@@ -3,297 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Орден Няшляндия | Официальный портал</title>
+    <title>🌸 Министерство Няшности и Внешних Связей 🌸</title>
     <style>
         :root {
-            --pink: #ffb7c5;
-            --blue: #a0e7e5;
+            --kawaii-pink-bg: #fff0f5;  
+            --kawaii-pink-main: #ffb7c5;
+            --kawaii-pink-dark: #ff8da1; 
+            --kawaii-blue-soft: #b3e5fc; 
+            --kawaii-text: #5c4b51;
             --white: #ffffff;
-            --dark: #121214;
-            --neon-pink: #ff66b2;
-            --neon-blue: #33ffff;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Имитация адресной строки */
-        .browser-bar {
-            background: #1a1a1e;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            border-bottom: 2px solid var(--pink);
-            gap: 15px;
-        }
-
-        .browser-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-
-        .address-input {
-            background: #2a2a30;
-            border: 1px solid var(--pink);
-            border-radius: 20px;
-            padding: 6px 20px;
-            color: var(--pink);
-            font-size: 14px;
-            flex-grow: 1;
-            text-shadow: 0 0 5px var(--neon-pink);
-            font-family: monospace;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            background: #16161a;
-            border: 3px solid var(--pink);
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(255, 183, 197, 0.2);
-        }
-
-        .hero {
-            text-align: center;
-            padding-bottom: 30px;
-            border-bottom: 2px dashed var(--pink);
-        }
-
-        h1 {
-            color: var(--pink);
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-
-        .subtitle {
-            color: var(--blue);
-            font-size: 1.1rem;
-            text-shadow: 0 0 8px var(--neon-blue);
-        }
-
-        /* Виджет ПВО / Ракет */
-        .defense-panel {
-            background: #1e1e24;
-            border: 2px solid var(--blue);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(51, 255, 255, 0.1);
-        }
-
-        .defense-title {
-            color: var(--blue);
-            font-size: 1rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .counter {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--pink);
-            text-shadow: 0 0 15px var(--neon-pink);
-            font-family: monospace;
-            margin-bottom: 5px;
-        }
-
-        .status-msg {
-            font-size: 0.95rem;
-            color: #a5a5b0;
-            font-style: italic;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-        }
-
-        .card {
-            background: #1c1c22;
-            border: 1px solid #2d2d35;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .card-title {
-            color: var(--pink);
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 5px rgba(255, 102, 178, 0.3);
-        }
-
-        label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            color: #b5b5bd;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            background: #25252b;
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        select:focus {
-            border-color: var(--pink);
-            outline: none;
-        }
-
-        .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 12px;
-            background: #ff5f56;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 0 10px rgba(255, 95, 86, 0.3);
-            transition: background 0.2s;
-        }
-
-        .btn:hover { background: #ff473d; }
-
-        .rules-list { list-style: none; }
-        .rules-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #25252b;
-            font-size: 0.95rem;
-            color: #e2e2e8;
-        }
-        .rules-list li::before { content: "🐾 "; }
-        .rules-list li:last-child { border-bottom: none; }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #222;
-            color: #55555d;
-            font-size: 0.85rem;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Comic Sans MS", "Chalkboard SE", sans-serif; }
+        body { background-color: var(--kawaii-pink-bg); color: var(--kawaii-text); line-height: 1.6; }
+        .browser-bar { background: var(--white); padding: 12px 20px; display: flex; align-items: center; border-bottom: 4px dashed var(--kawaii-pink-main); gap: 15px; }
+        .browser-dots { display: flex; gap: 8px; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .dot.red { background: #ff7675; }
+        .dot.yellow { background: #ffeaa7; }
+        .dot.green { background: #55efc4; }
+        .address-input { background: #fdf6f7; border: 2px solid var(--kawaii-pink-main); border-radius: 20px; padding: 6px 20px; color: var(--kawaii-pink-dark); font-size: 13px; flex-grow: 1; text-align: center; font-weight: bold; }
+        .header-kawaii { background: var(--white); padding: 25px; border-bottom: 4px dashed var(--kawaii-pink-main); text-align: center; position: relative; }
+        .header-emblem { font-size: 3.5rem; display: inline-block; animation: heartBeat 2s infinite; margin-bottom: 5px; }
+        .header-text h1 { font-size: 2rem; color: var(--kawaii-pink-dark); text-shadow: 2px 2px 0px rgba(255, 141, 161, 0.2); margin-bottom: 5px; }
+        .header-text p { font-size: 0.9rem; color: #8e7c84; font-style: italic; }
+        .nav-kawaii { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        .nav-list { display: flex; list-style: none; gap: 15px; justify-content: center; }
+        .nav-list li { flex: 1; max-width: 200px; }
+        .nav-list a { display: block; padding: 12px; background: var(--white); color: var(--kawaii-pink-dark); text-decoration: none; font-weight: bold; font-size: 0.9rem; text-align: center; border: 3px solid var(--kawaii-pink-main); border-radius: 25px; box-shadow: 0 4px 0px var(--kawaii-pink-main); transition: all 0.2s; }
+        .nav-list a:hover { transform: translateY(2px); box-shadow: 0 2px 0px var(--kawaii-pink-main); background: #fffcfd; }
+        .main-container { max-width: 1000px; margin: 10px auto 30px auto; padding: 0 20px; display: grid; grid-template-columns: 3fr 1fr; gap: 25px; }
+        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
+        .content-panel { background: var(--white); padding: 30px; border: 4px solid var(--kawaii-pink-main); border-radius: 30px; box-shadow: 0 8px 0px rgba(255, 183, 197, 0.3); }
+        .pink-notice { background: #fff5f7; border: 3px dashed var(--kawaii-pink-dark); padding: 15px; margin-bottom: 25px; border-radius: 20px; font-size: 0.9rem; text-align: center; }
+        .pink-notice h2 { font-size: 1.1rem; color: var(--kawaii-pink-dark); margin-bottom: 5px; }
+        .section-title { font-size: 1.4rem; color: var(--kawaii-pink-dark); border-bottom: 3px dotted var(--kawaii-pink-main); padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .kawaii-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 15px; font-size: 0.9rem; }
+        .kawaii-table th, .kawaii-table td { padding: 14px; text-align: left; border: 2px solid var(--kawaii-pink-main); }
+        .kawaii-table th { background: #fff5f7; width: 40%; font-weight: bold; color: var(--kawaii-pink-dark); border-radius: 15px 0 0 15px; }
+        .kawaii-table td { background: var(--white); border-radius: 0 15px 15px 0; }
+        .sidebar-layout { display: flex; flex-direction: column; gap: 20px; }
+        .mascot-card { background: var(--white); border: 4px solid var(--kawaii-pink-main); padding: 20px; border-radius: 25px; text-align: center; box-shadow: 0 6px 0px rgba(255, 183, 197, 0.2); }
+        .mascot-avatar { font-size: 4.5rem; margin-bottom: 5px; animation: heartBeat 3s infinite; }
+        .mascot-bubble { background: #fff0f2; border: 2px solid var(--kawaii-pink-main); padding: 12px; border-radius: 18px; font-size: 0.85rem; text-align: left; color: var(--kawaii-text); position: relative; }
+        .kawaii-links { background: var(--white); border: 4px solid var(--kawaii-pink-main); list-style: none; border-radius: 25px; overflow: hidden; box-shadow: 0 6px 0px rgba(255, 183, 197, 0.2); }
+        .kawaii-links li a { display: block; padding: 14px 15px; color: var(--kawaii-pink-dark); text-decoration: none; font-size: 0.85rem; border-bottom: 2px dashed var(--kawaii-pink-main); font-weight: bold; transition: background 0.2s; }
+        .kawaii-links li a:hover { background: #fff5f7; padding-left: 20px; }
+        .site-footer { background: var(--white); color: var(--kawaii-pink-dark); text-align: center; padding: 25px; margin-top: 50px; font-size: 0.8rem; font-weight: bold; border-top: 4px dashed var(--kawaii-pink-main); }
+        @keyframes heartBeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
-
     <div class="browser-bar">
-        <div class="browser-dots">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-        </div>
-        <div class="address-input">https://uwuland.uwu</div>
+        <div class="browser-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+        <div class="address-input">🌸 https://uwuland.uwu 🌸</div>
     </div>
-
-    <div class="container">
-        <div class="hero">
-            <h1>Орден Няшляндия</h1>
-            <p class="subtitle">Официальный информационный портал для иностранных гостей (◕‿◕)♡</p>
+    <header class="header-kawaii">
+        <div class="header-emblem">✨🌸✨</div>
+        <div class="header-text">
+            <h1>Министерство Няшности и Внешних Связей</h1>
+            <p>~ Самое милое ведомство Кассандрии! (◕‿◕)♡ ~</p>
         </div>
+    </header>
+    <nav class="nav-kawaii">
+        <ul class="nav-list">
+            <li><a href="#">Главная 💕</a></li>
+            <li><a href="#">Визы 🐾</a></li>
+            <li><a href="#">Ведомства 🍡</a></li>
+        </ul>
+    </nav>
 
-        <div class="defense-panel">
-            <div class="defense-title">⚔️ Мониторинг стратегических аргументов Кассандрии ⚔️</div>
-            <div class="counter">75 / 75</div>
-            <div class="status-msg">розовых баллистических ракет «Царь-бомба» наготове. Лорд Фризер, улыбаемся и машем! (◡‿◡✿)</div>
-        </div>
+    <div class="main-container">
+        <main class="content-panel">
+            <div class="pink-notice">
+                <h2>Важное пушистое объявление!</h2>
+                <p>Все электронные uwu-службы работают на полную мощность! Данные бережно переносятся по волшебным аналоговым реле Отца Юици 🐾</p>
+            </div>
+            <h2 class="section-title">⭐ Официальный визитный манифест государства</h2>
+            <div style="background: #fff9fa; border: 3px dashed var(--kawaii-pink-main); padding: 25px; border-radius: 25px; margin-bottom: 30px; font-size: 0.95rem; color: var(--kawaii-text); text-align: justify;">
+                <p style="margin-bottom: 15px; font-weight: bold; color: var(--kawaii-pink-dark); text-align: center; font-size: 1.1rem;">
+                    🌸 Добро пожаловать в Кассандрию — Оазис Мира и Совершенства! 🌸
+                </p>
+                <p style="margin-bottom: 15px;">
+                    Орден Няшляндия — это уникальное, высокотехнологичное и изолированное научно-исследовательское государство, расположенное в прекрасном северо-восточном анклаве Амонии. Наша фракция была рождена из стремления к абсолютному порядку, гармонии и созданию идеального общества будущего под мудрым руководством нашей обожаемой Императрицы Кассандры Юици.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    В отличие от погрязшего в конфликтах внешнего мира, на улицах нашей великолепной неоновой столицы <strong>Кьюти Хабу</strong> царит вечное спокойствие, радость и абсолютная безопасность. Мы полностью искоренили преступность, социальное неравенство и любые проявления агрессии, заменив их на передовые программы культурного и ментального развития.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    Наш Орден славится своими феноменальными достижениями в области биоинженерии, кибернетики и квантовых технологий. Наша главная миссия — мягкое и созидательное переформатирование старых, устаревших устоев человечества ради построения нового, прекрасного мира, где каждый житель сможет найти свое истинное, счастливое и полезное предназначение на благо нашей великой правительницы.
+                </p>
+                <p style="font-weight: bold; text-align: center; color: var(--kawaii-pink-dark); font-size: 1.05rem; margin-top: 20px;">
+                    ✨ Кассандрия открыта для дружбы, созидания и цифровой милоты! 🐇🌟
+                </p>
+            </div>
+            <h2 class="section-title">💒 Список кавайных департаментов</h2>
+            <table class="kawaii-table">
+                <tr><th>Департамент визовой милоты</th><td>Выдача волшебных uwu-разрешений для гостей</td></tr>
+                <tr><th>Бюро розового протокола</th><td>Встреча иностранных гостей у ворот Кьюти Хабу</td></tr>
+                <tr><th>Служба сетевой защиты</th><td>Охрана серверов при помощи пушистых файрволов</td></tr>
+            </table>
+        </main>
 
-        <div class="grid">
-            <div class="card">
-                <div class="card-title">🌸 Проверка въездных документов</div>
-                <div style="margin-bottom: 15px;">
-                    <label for="gender">Укажите ваш биологический статус / пол:</label>
-                    <select id="gender" onchange="checkStatus()">
-                        <option value="none">-- Сделайте выбор --</option>
-                        <option value="female">Женщина</option>
-                        <option value="nonbinary">Небинарная личность</option>
-                        <option value="male">Мужчина</option>
-                    </select>
-                </div>
-                <div id="visa-result" style="min-height: 80px; font-size: 0.95rem; line-height: 1.4;">
-                    <p style="color: #666; dashed; padding: 10px;">Система ожидает выбора параметров...</p>
+        <aside class="sidebar-layout">
+            <div class="mascot-card">
+                <div class="mascot-avatar">🐰</div>
+                <div class="mascot-bubble">
+                    <strong>Няша-тян, символ МИД:</strong><br>
+                    «Уру-ру! Изучайте наш прекрасный манифест! Министерство Няшности желает вам самого чудесного и доброго дня! (｡♥‿♥｡)»
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-title">🐾 Памятка туристу в Кьюти Хабу</div>
-                <ul class="rules-list">
-                    <li>Приветствуя Розовую Гвардию, делайте это максимально няшно.</li>
-                    <li>Все имперские деньги меняются в автоматах «Лапка-Банк».</li>
-                    <li>Любые кибератаки автоматически запускают демаскулинизацию.</li>
-                    <li>Восхищаться красотой 25-летней Императрицы можно без визы.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer">
-            Управление цифровой милоты и аналоговой связи Отца Юици © 2287. Все права защищены Гвардией.
-        </div>
+            <ul class="kawaii-links">
+                <li><a href="#">🌸 Кабинет Министров</a></li>
+                <li><a href="#">🐾 Прогулки по Кьюти Хабу</a></li>
+                <li><a href="#">🎈 Обращения граждан</a></li>
+            </ul>
+        </aside>
     </div>
-
-    <script>
-        function checkStatus() {
-            const gender = document.getElementById('gender').value;
-            const result = document.getElementById('visa-result');
-            
-            if (gender === 'female' || gender === 'nonbinary') {
-                result.innerHTML = `
-                    <div style="background: rgba(39, 201, 63, 0.1); border: 1px solid #27c93f; padding: 15px; border-radius: 6px; color: #27c93f;">
-                        <strong>Доступ подтвержден! 🎉</strong><br>
-                        Ваша туристическая uwu-виза выдана автоматически. Приятного отдыха в розовом анклаве!
-                    </div>`;
-            } else if (gender === 'male') {
-                result.innerHTML = `
-                    <div style="background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; padding: 15px; border-radius: 6px; color: #ff5f56;">
-                        <strong>Внимание! Обнаружено сырье ⚠️</strong><br>
-                        Вы будете перенаправлены на бесплатную процедуру биоинженерного изменения личности. 
-                        <button class="btn" onclick="alert('Заявка принята! Розовая Гвардия уже выехала за вами. (◕‿◕)')">Стать небинарным рабом дворца</button>
-                    </div>`;
-            } else {
-                result.innerHTML = '<p style="color: #666;">Система ожидает выбора параметров...</p>';
-            }
-        }
-    </script>
+    <footer class="site-footer">
+        ~ С любовью, Министерство Няшности Кассандрии © 2287 ~ <br> All Rights Reserved. (✿◠‿◠)
+    </footer>
 </body>
 </html>
