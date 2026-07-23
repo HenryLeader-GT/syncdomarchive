@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 ニャシュランド親衛隊 | 出入国管理 🌸</title>
+    <style>
+        /* Скопируйте весь блок <style> из первого файла index.html один в один */
+        :root { --kawaii-pink-bg: #fff0f5; --kawaii-pink-main: #ffb7c5; --kawaii-pink-dark: #ff8da1; --kawaii-text: #5c4b51; --white: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Meiryo", sans-serif; }
+        body { background-color: var(--kawaii-pink-bg); color: var(--kawaii-text); line-height: 1.6; }
+        .browser-bar { background: var(--white); padding: 12px 20px; display: flex; align-items: center; border-bottom: 4px dashed var(--kawaii-pink-main); gap: 15px; }
+        .browser-dots { display: flex; gap: 8px; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; }
+        .dot.red { background: #ff7675; } .dot.yellow { background: #ffeaa7; } .dot.green { background: #55efc4; }
+        .address-input { background: #fdf6f7; border: 2px solid var(--kawaii-pink-main); border-radius: 20px; padding: 6px 20px; color: var(--kawaii-pink-dark); font-size: 13px; flex-grow: 1; text-align: center; font-weight: bold; }
+        .header-kawaii { background: var(--white); padding: 25px; border-bottom: 4px dashed var(--kawaii-pink-main); text-align: center; }
+        .header-emblem { font-size: 3.5rem; display: inline-block; animation: heartBeat 2s infinite; margin-bottom: 5px; }
+        .header-text h1 { font-size: 1.8rem; color: var(--kawaii-pink-dark); text-shadow: 2px 2px 0px rgba(255, 141, 161, 0.2); }
+        .header-text p { font-size: 0.9rem; color: #8e7c84; font-style: italic; }
+        .nav-kawaii { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        .nav-list { display: flex; list-style: none; gap: 15px; justify-content: center; }
+        .nav-list li { flex: 1; max-width: 200px; }
+        .nav-list a { display: block; padding: 12px; background: var(--white); color: var(--kawaii-pink-dark); text-decoration: none; font-weight: bold; font-size: 0.9rem; text-align: center; border: 3px solid var(--kawaii-pink-main); border-radius: 25px; box-shadow: 0 4px 0px var(--kawaii-pink-main); transition: all 0.2s; }
+        .nav-list a:hover { transform: translateY(2px); box-shadow: 0 2px 0px var(--kawaii-pink-main); }
+        .nav-list a.active { background: var(--kawaii-pink-main); color: white; transform: translateY(4px); box-shadow: none; }
+        .main-container { max-width: 1000px; margin: 10px auto 30px auto; padding: 0 20px; display: grid; grid-template-columns: 3fr 1fr; gap: 25px; }
+        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
+        .content-panel { background: var(--white); padding: 30px; border: 4px solid var(--kawaii-pink-main); border-radius: 30px; box-shadow: 0 8px 0px rgba(255, 183, 197, 0.3); }
+        .section-title { font-size: 1.4rem; color: var(--kawaii-pink-dark); border-bottom: 3px dotted var(--kawaii-pink-main); padding-bottom: 8px; margin-bottom: 20px; }
+        .sidebar-layout { display: flex; flex-direction: column; gap: 20px; }
+        .mascot-card { background: var(--white); border: 4px solid var(--kawaii-pink-main); padding: 20px; border-radius: 25px; text-align: center; }
+        .mascot-avatar { font-size: 4.5rem; }
+        .mascot-bubble { background: #fff0f2; border: 2px solid var(--kawaii-pink-main); padding: 12px; border-radius: 18px; font-size: 0.85rem; text-align: left; }
+        .site-footer { background: var(--white); color: var(--kawaii-pink-dark); text-align: center; padding: 25px; margin-top: 50px; font-size: 0.8rem; font-weight: bold; border-top: 4px dashed var(--kawaii-pink-main); }
+        .kawaii-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 15px; font-size: 0.9rem; }
+        .kawaii-table th, .kawaii-table td { padding: 14px; text-align: left; border: 2px solid var(--kawaii-pink-main); }
+        .kawaii-table th { background: #fff5f7; width: 35%; font-weight: bold; color: var(--kawaii-pink-dark); border-radius: 15px 0 0 15px; }
+        .kawaii-table td { background: var(--white); border-radius: 0 15px 15px 0; }
+        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
+</head>
+<body>
+    <div class="browser-bar">
+        <div class="browser-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+        <div class="address-input">🌸 https://github.io 🌸</div>
+    </div>
+    <header class="header-kawaii">
+        <div class="header-emblem">🐾⚔️🐾</div>
+        <div class="header-text">
+            <h1>親衛隊出入国管理・査証規定</h1>
+            <p>~ カサンドリアの安全を守るための境界ルール ~</p>
+        </div>
+    </header>
+    <nav class="nav-kawaii">
+        <ul class="nav-list">
+            <li><a href="index.html">ホーム 💕</a></li>
+            <li><a href="visa.html" class="active">査証案内 🐾</a></li>
+            <li><a href="departments.html">親衛隊組織 🍡</a></li>
+        </ul>
+    </nav>
+    <div class="main-container">
+        <main class="content-panel">
+            <h2 class="section-title">🐾 国境通過および出入国審査要領</h2>
+            <p style="margin-bottom: 20px;">親衛隊国境警備局より、桃色アンカレッジ入国に関する各種規定をお知らせします：</p>
+            <table class="kawaii-table">
+                <tr><th>女性（Female）</th><td>「uwu電子査証」が自動発行されます。首都キューティ・ハブ内のすべての文化・観光エリアへの自由な立ち入りが許可されます。</td></tr>
+                <tr><th>ノンバイナリー（Non-binary）</th><td>簡易専用レーンを通過いただけます。配置されている親衛隊将校が完全なサポートを提供します。</td></tr>
+                <tr><th>男性（Male）</th><td>西暦2274年制定の国家ドクトリンに基づき、特別管理対象となります。自動的にバイオエンジニアリング適正プログラムへと案内されます。</td></tr>
+            </table>
+        </main>
+        <aside class="sidebar-layout">
+            <div class="mascot-card">
+                <div class="mascot-avatar">🐰</div>
+                <div class="mascot-bubble">
+                    <strong>親衛隊将校ニャша:</strong><br>
+                    «おててを上げて！入国書類の準備を！我ら国境警備隊は24時間体制で警戒任務に就いています！🐾(◡‿◡✿)»
+                </div>
+            </div>
+        </aside>
+    </div>
+    <footer class="site-footer">~ ニニャシュランド親衛隊本部・カサンドリア © 2287 ~</footer>
+</body>
+</html>
