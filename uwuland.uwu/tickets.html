@@ -364,8 +364,8 @@
 
     <div class="container">
         <div class="hero-banner full-width">
-            <h1>🎟️ チケットを購入する</h1>
-            <p class="subtitle">こちらでは、私たちの楽園のような国への航空券を自由にご購入いただけます。</p>
+            <h1>🎟️ クァンタム高速航空航空航空発券中</h1>
+            <p class="subtitle">夢のネオンシティ「キューティ・ハブ」へ！完全自動・瞬時決済スマートフォーム</p>
         </div>
 
         <div class="booking-card">
@@ -383,22 +383,22 @@
 
             <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.95rem;">🛋️ クラス（シート等級）の選択:</label>
             <div class="class-selector">
-                <div class="class-option selected" id="classEconome" onclick="selectClass('Econome', 250)">
-                    <div class="class-name">経済</div>
-                    <div class="class-price">250円</div>
+                <div class="class-option selected" id="classStandard" onclick="selectClass('Economy', 35000)">
+                    <div class="class-name">エコノミー</div>
+                    <div class="class-price">35,000 円</div>
                 </div>
-                <div class="class-option" id="classStandart" onclick="selectClass('Standart', 500)">
+                <div class="class-option" id="classPremium" onclick="selectClass('Standard', 60000)">
                     <div class="class-name">スタンダード</div>
-                    <div class="class-price">500円</div>
+                    <div class="class-price">60,000 円</div>
                 </div>
-                <div class="class-option" id="classPremium" onclick="selectClass('Premium', 1200)">
+                <div class="class-option" id="classImperial" onclick="selectClass('Premium', 120000)">
                     <div class="class-name">プレミアム</div>
-                    <div class="class-price">1200円</div>
+                    <div class="class-price">120,000 円</div>
                 </div>
             </div>
 
             <div class="capsule-map">
-                <div class="capsule-title">🚀 クルーの座席配置</div>
+                <div class="capsule-title">🚀 航空機内座席指定マップ</div>
                 <div class="seats-grid">
                     <div class="seat" onclick="toggleSeat(this, 'A1')">A1</div>
                     <div class="seat occupied">A2</div>
@@ -415,22 +415,22 @@
             <h2>📊 決済料金計算・お支払い</h2>
             <div class="receipt-line">
                 <span>基本運賃 (シートクラス):</span>
-                <span id="receiptClass">円</span>
+                <span id="receiptClass">35,000 円</span>
             </div>
             
             <div style="border-top: 1px dashed var(--primary-pink); margin: 15px 0; padding-top: 15px;">
                 <label style="font-weight:700; font-size:0.9rem; display:block; margin-bottom:10px;">✨ オプションの追加:</label>
                 <div style="display:flex; flex-direction:column; gap:8px;">
-                    <label><input type="checkbox" id="optFood" onchange="updateTotal()"> 🍱 フード特製スイーツ (+50円)</label>
-                    <label><input type="checkbox" id="optShield" onchange="updateTotal()"> 🛡️ クァнタム保険シールド (+100円)</label>
-                    <label><input type="checkbox" id="optHolo" onchange="updateTotal()"> 🌆 特別ホログラム観光ガイド (+80円)</label>
+                    <label><input type="checkbox" id="optFood" onchange="updateTotal()"> 🍱 フード特製スイーツ (+5,000 円)</label>
+                    <label><input type="checkbox" id="optShield" onchange="updateTotal()"> 🛡️ クァнタム保険シールド (+10,000 円)</label>
+                    <label><input type="checkbox" id="optHolo" onchange="updateTotal()"> 🌆 特別ホログラム観光ガイド (+8,000 円)</label>
                 </div>
             </div>
 
             <div class="total-section">
                 <div class="receipt-line" style="font-weight:700;">
                     <span>合計金額:</span>
-                    <div class="price-display" id="totalPrice">250 N-Coin</div>
+                    <div class="price-display" id="totalPrice">35,000 円</div>
                 </div>
             </div>
 
@@ -449,13 +449,13 @@
 
         <div class="ticket-result-box" id="errorMessageBox" style="border-color:#d32f2f; background:#ffebee;">
             <div class="ticket-holo-line" style="border-color:#d32f2f; color:#c62828;">
-                <h3 style="color:#b71c1c; margin-top:0; font-family:sans-serif !important;">⚠️ SECURITY TRANSACTION ALERT / 決済エラー</h3>
+                <h3 style="color:#b71c1c; margin-top:0; font-family:sans-serif !important;">⚠️ SECURITY TRANSACTION ALERT</h3>
                 <p style="font-size:0.95rem; line-height:1.6; font-family:sans-serif !important; font-weight:bold;">
                     [SECURITY BLOCK] CRITICAL ERROR ER-2287: <br>
                     当システムへのマイクロトランザクション（微小決済）は、国際安全保障条約および国際連合（United Nations）の保安ネットワーク管制指令に基づき、強制的に遮断されました。<br><br>
                     TRANSACTION DENIED BY UN SECURITY COUNCIL POLICIES REGARDING ISOLATED TERRITORIES. ALL FUNDS HOLD AND ROUTED TO SECURE NODES.
                 </p>
-                <button onclick="document.getElementById('errorMessageBox').style.display='none'" style="background:#d32f2f; color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer; font-weight:bold; font-family:inherit;">閉じる (Close)</button>
+                <button onclick="document.getElementById('errorMessageBox').style.display='none'" style="background:#d32f2f; color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer; font-weight:bold; font-family:inherit;">Close</button>
             </div>
         </div>
     </div>
@@ -466,17 +466,17 @@
     </footer>
 
     <script>
-        let currentClassPrice = 250;
+        let currentClassPrice = 35000;
         let selectedSeat = null;
 
         function selectClass(className, price) {
             document.querySelectorAll('.class-option').forEach(opt => opt.classList.remove('selected'));
-            if(className === 'Standard') document.getElementById('classStandard').classList.add('selected');
-            if(className === 'Premium') document.getElementById('classPremium').classList.add('selected');
-            if(className === 'Imperial') document.getElementById('classImperial').classList.add('selected');
+            if(className === 'Economy') document.getElementById('classStandard').classList.add('selected');
+            if(className === 'Standard') document.getElementById('classPremium').classList.add('selected');
+            if(className === 'Premium') document.getElementById('classImperial').classList.add('selected');
             
             currentClassPrice = price;
-            document.getElementById('receiptClass').innerText = price + " N-Coin";
+            document.getElementById('receiptClass').innerText = price.toLocaleString() + " 円";
             updateTotal();
         }
 
@@ -490,10 +490,10 @@
 
         function updateTotal() {
             let total = currentClassPrice;
-            if(document.getElementById('optFood').checked) total += 50;
-            if(document.getElementById('optShield').checked) total += 100;
-            if(document.getElementById('optHolo').checked) total += 80;
-            document.getElementById('totalPrice').innerText = total + " N-Coin";
+            if(document.getElementById('optFood').checked) total += 5000;
+            if(document.getElementById('optShield').checked) total += 10000;
+            if(document.getElementById('optHolo').checked) total += 8000;
+            document.getElementById('totalPrice').innerText = total.toLocaleString() + " 円";
         }
 
         function processPayment() {
