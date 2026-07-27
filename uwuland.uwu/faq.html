@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 FAQ | ニャシュランド親衛隊 🌸</title>
+    <style>
+        @import url('https://googleapis.com');
+
+        :root {
+            --primary-pink: #ffb7c5;
+            --pastel-pink: #ffe4e1;
+            --neon-pink: #ff69b4;
+            --soft-purple: #e6e6fa;
+            --text-dark: #4a373a;
+            --white: #ffffff;
+            --mint-teal: #b2dfdb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--soft-purple) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle, var(--white) 10%, transparent 10%),
+                radial-gradient(circle, var(--primary-pink) 10%, transparent 10%);
+            background-size: 80px 80px;
+            opacity: 0.15;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 15px 40px;
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px dashed var(--primary-pink);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header nav a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logo {
+            font-family: 'Comfortaa', display;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--neon-pink);
+            text-shadow: 2px 2px var(--pastel-pink);
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid var(--primary-pink);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 var(--primary-pink);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--neon-pink);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #cc5190;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Comfortaa', cursive !important;
+            letter-spacing: 0px !important;
+        }
+
+        .hero-banner {
+            background: rgba(255, 255, 255, 0.85);
+            border: 5px solid var(--primary-pink);
+            border-radius: 40px;
+            padding: 40px 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.35);
+            margin-bottom: 40px;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.6rem;
+            color: var(--neon-pink);
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 0px var(--white), 4px 4px 0px var(--pastel-pink);
+        }
+
+        .faq-section {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 35px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+            margin-bottom: 35px;
+            border: 3px solid var(--soft-purple);
+        }
+
+        .section-title {
+            color: var(--neon-pink);
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px dashed var(--primary-pink);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Стили аккордеона вопросов */
+        .faq-item {
+            background: var(--white);
+            border: 2px solid var(--soft-purple);
+            border-radius: 20px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-pink);
+            box-shadow: 0 4px 12px rgba(255,105,180,0.1);
+        }
+
+        .faq-question {
+            padding: 18px 25px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            color: var(--text-dark);
+            background: rgba(255,255,255,0.5);
+        }
+
+        .faq-question::after {
+            content: "💖";
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0, 1, 0, 1);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #5c474a;
+            border-top: 0px solid transparent;
+        }
+
+        /* Классы для JS открытия */
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+        .faq-item.active .faq-answer {
+            padding: 20px 25px;
+            max-height: 1000px;
+            transition: all 0.3s cubic-bezier(1, 0, 1, 0);
+            border-top: 2px dashed var(--pastel-pink);
+            background: #fffafb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sparkles"></div>
+
+    <header>
+        <div class="logo">🌸 オーデン・ニャシュランディア 🐾</div>
+        <nav>
+            <a href="index.html" class="nav-btn">🏠 メイン</a>
+            <a href="visa.html" class="nav-btn">📋 査証案内</a>
+            <a href="departments.html" class="nav-btn">🧬 親衛隊組織</a>
+            <a href="faq.html" class="nav-btn active">🔮 FAQ</a>
+            <a href="tickets.html" class="nav-btn">🎟️ チケット購入</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero-banner">
+            <h1>🔮 よくあるご質問 — 全自動調和型情報総合案内</h1>
+            <p class="subtitle">親愛なる訪問者のための完全無欠・安心安全の80項目QAデータベースポータル</p>
+        </div>
+        <!-- SECTION 1: GENERAL QUESTIONS -->
+        <div class="faq-section">
+            <h2 class="section-title">✨ 一般項目 (Общие вопросы)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q1: ニャシュランド親衛隊への旅行は安全ですか？</div>
+                <div class="faq-answer">A1: はい、100%安全です！当国は高度なクァнタムAIシールドと完全自動化された防衛網に守られており、外の世界のような犯罪やトラブルは一切存在しません。安心してカワイイネオンの世界をお楽しみください。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q2: 入国に必要な持ち物はありますか？</div>
+                <div class="faq-answer">A2: 基本的なデジタルホログラムIDと、本サイトで発行された電子チケットがあれば十分です。重い荷物は不要で、現地ではすべて最新のスマートインフラがあなたをサポートします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q3: 旅行のベストシーズンはいつですか？</div>
+                <div class="faq-answer">A3: 当国の気候は「天候ホログラム調整センター」により24時間365日、常に最適な心地よさに保たれています。いつでも最高のバカンスをお楽しみいただけます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q4: 言語の壁が心配ですが大丈夫ですか？</div>
+                <div class="faq-answer">A4: 国内のすべてのエリアにおいて、最先端のリアルタイム量子翻訳システムが稼働しています。あらゆる言語の訪問者がストレスなくコミュニケーション可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q5: インターネット回線やWi-Fiは使えますか？</div>
+                <div class="faq-answer">A5: はい、国内全域で親衛隊が提供する超高速・高セキュリティの暗号化ワイヤレスネットワーク「uwu-Net」が無料でご利用いただけます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q6: 通貨は何を使用していますか？</div>
+                <div class="faq-answer">A6: 完全キャッシュレスの国家デジタルポイント「N-Coin」を使用します。入国時にお手持ちのクレジットからスマートにチャージが可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q7: 迷子になった場合はどうすればいいですか？</div>
+                <div class="faq-answer">A7: 街のいたるところに配置されたAIホログラムガイド、または可愛い案内ドローンがお近くの親衛隊サポートセンターまで優しくエスコートいたします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q8: 写真や動画の撮影は自由ですか？</div>
+                <div class="faq-answer">A8: 一般観光エリアおよびネオン街での撮影は自由に行っていただけます！SNSへの投稿も大歓迎です（※一部の最先端科学研究施設を除く）。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q9: 医療体制はどのようになっていますか？</div>
+                <div class="faq-answer">A9: 24時間稼働の「ヘルスケア総合窓口」が、最先端のナノメディカルAI技術を用いて、あらゆる体調不良を瞬時に予防・ケアいたします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q10: ペットと一緒に旅行することはできますか？</div>
+                <div class="faq-answer">A10: もちろんです！可愛いペット専用のスマートケアエリアや、AIドローンによるお散歩サポートシステムも完備しております。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q11: 国内での移動手段は何ですか？</div>
+                <div class="faq-answer">A11: 自動運転の磁気浮上カプセル「カワイイ・エクスプレス」や、ホログラム案内付きのスマート移動レーンが全域に敷設されています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q12: お土産はどのようなものが人気ですか？</div>
+                <div class="faq-answer">A12: フード・ロボティクス開発課が作った、食べるのがもったいないほど可愛い「発光ネオンスイーツ」や特製アロマが非常に人気です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q13: 忘れ物をしたときの対応は？</div>
+                <div class="faq-answer">A13: すべての物品はスマートタグによってAI追跡されており、紛失物は数分以内にドローンで滞在先のホテルへ自動配送されます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q14: 観光中の服装にルールはありますか？</div>
+                <div class="faq-answer">A14: 特に厳しいルールはありませんが、パステルカラーやネオンを取り入れた可愛いファッションをすると、街の景観と一体化してさらに楽しめます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q15: 年齢制限はありますか？</div>
+                <div class="faq-answer">A15: お子様からシニアの方まで、すべての年代のゲストが安心して過ごせるユニバーサルデザインとスマートセーフティを採用しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q16: 滞在期間の延長は可能ですか？</div>
+                <div class="faq-answer">A16: 観光中の幸福度が一定以上に達した場合、ポータルサイト内の「査証案内」から簡単に延長リクエストを送ることができます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q17: ホテルの予約は個別で必要ですか？</div>
+                <div class="faq-answer">A17: 「チケット購入」の際に、AIがお客様のご要望に合わせた最適なスマートホログラムホテルを自動でマッチング・確保いたします。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q18: 停電などのインフラトラブルの心配は？</div>
+                <div class="faq-answer">A18: クァンタムエネルギー工学部が多層防御型の次世代グリッドを管理しているため、エネルギー供給の停止確率は0%に固定されています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q19: 現地の水は飲めますか？</div>
+                <div class="faq-answer">A19: 国内のすべての給水設備はナノフィルターで完全ろ過されており、最高品質のミネラルを含んだ極めてクリーンな水をいつでも飲用可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q20: 困ったときのリアルタイムサポートは？</div>
+                <div class="faq-answer">A20: スマートフォンの公式アプリから、親衛隊インテリジェンスAIが24時間いつでもライブチャットで疑問やお困りごとに丁寧にお答えします。</div>
+            </div>
+        </div>
+        <!-- SECTION 2: STATE & SYSTEM -->
+        <div class="faq-section">
+            <h2 class="section-title">🏛️ 国家・体制 (Государство и политика)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q21: ニャシュランド親衛隊の政治体制は何ですか？</div>
+                <div class="faq-answer">A21: 当国は最先端の「自律型AI調和統治」を採用しています。人間の政治的対立や不完全さを完全に排除し、全自動化された科学システムが住民の幸福を均等に保障します。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q22: 外部の国家や連盟と外交関係はありますか？</div>
+                <div class="faq-answer">A22: 当国は完全独立した高度自給自足国家です。外部の紛争から距離を置き、独自の高度なサイバーセキュリティ網によって領域の平和を完全死守しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q23: 国家ドクトリン「西暦2274年制定」とは何ですか？</div>
+                <div class="faq-answer">A23: 社会全体の『美・調和・デジタル秩序』を最大化するために制定された基本法です。すべてのインフラやAIの稼働はこの心優しいドクトリンに従っています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q24: 親衛隊（将校）はどのような役割を担っていますか？</div>
+                <div class="faq-answer">A24: 当国の将校は武力ではなく、街の美観維持、AIコアの巡回、そして訪問者へのコンシェルジュサービスを提供する「調和のサポーター」として機能しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q25: なぜ国境がこれほど厳重にデジタル管理されているのですか？</div>
+                <div class="faq-answer">A25: 外の世界の混乱、サイバーウイルス、経済的格差を国内に持ち込ませないためです。中に入るすべての方に最高のピュアな環境を提供するための措置です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q26: 国際的なサイバー攻撃への備えはありますか？</div>
+                <div class="faq-answer">A26: はい、「クァンタムAI・サイバー防衛局」が誇る完全独立型の量子暗号通信網により、あらゆる外部からのハッキングや干渉を根底から無力化しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q27: 法律や罰則は厳しいですか？</div>
+                <div class="faq-answer">A27: そもそも当国では、AIによる完璧なメンタルヘルスケアと社会の安定により犯罪発生率が「ゼロ」です。そのため、高圧的な警察や刑罰の必要性自体がありません。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q28: 国家の財政や経済はどのように成り立っていますか？</div>
+                <div class="faq-answer">A28: 完全自動化された地下工場とクァンタムエネルギー、そして高度なバイオ工学の成果による「完全資源循環型経済」です。外部の貿易摩擦に一切影響されません。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q29: 一般市民が政治に参加することはありますか？</div>
+                <div class="faq-answer">A29: 住民のあらゆるニーズは「住民幸福度総合窓口」の量子センサーがリアルタイムで検知し、AIが即座に都市環境へ反映するため、面倒な選挙や議論は不要です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q30: 「国父」と呼ばれる存在について教えてください。</div>
+                <div class="faq-answer">A30: 初代指導者であり、当国の高度な科学技術と防衛シールドの基礎を築いた偉大な開拓者です。その精神は今も安全な都市システムの中に息づいています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q31: 国内のメディアやニュースは誰が管理しています。</div>
+                <div class="faq-answer">A31: 「デジタルカルチャー管理局」が担当し、住民に不安や恐怖を与えるゴシップを排除した、純粋なアート、音楽、科学の発展ニュースのみを配信しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q32: 他国との軍事的な緊張はありますか？</div>
+                <div class="faq-answer">A32: ありません。当国の「クァンタムシールド」はあらゆる物理的・デジタル的攻撃を完全に遮断するため、他国が干渉すること自体が不可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q33: 税金制度はどのようになっていますか？</div>
+                <div class="faq-answer">A33: 当国には住民から徴収する税金という概念が存在しません。すべての公共サービスや生活資源は、自動化工場のインフラによって無償提供されます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q34: 通信や言論の自由は制限されていますか？</div>
+                <div class="faq-answer">A34: 制限ではなく「保護」がされています。ヘイトスピーチや悪意あるデマはAIによって自動でフィルタリングされ、誰もが傷つかない優しい空間が保たれています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q35: 科学研究の成果は公開されていますか？</div>
+                <div class="faq-answer">A35: 住民の生活向上に直結する技術は随時ポータルに公開されますが、国家セキュリティに関わる量子AIコアの情報は完全非公開の安全なアーカイブに保護されています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q36: 移住を希望することは可能ですか？</div>
+                <div class="faq-answer">A36: 観光滞在中に「適正評価プログラム」を受け、当国の調和ドクトリンとの高い互換性が実証された場合、特別移住権への道が開かれます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q37: 宗教や思想の自由は認められていますか？</div>
+                <div class="faq-answer">A37: 個人の内面は完全に自由です。ただ、住民全員が「他者を尊重し、美しい調和の中で生きる」という共通の価値観を持っているため、思想の対立が起きません。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q38: 「カサンドリア」と「オーデン・ニャシュランディア」の違いは？</div>
+                <div class="faq-answer">A38: 「カサンドリア」は都市の地理的・歴史的名称であり、現在の高度なハイテク軍事科学統治体制および公式な国家としての名称が「オーデン・ニャシュランディア」です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q39: 独自の祝日や記念日はありますか？</div>
+                <div class="faq-answer">A39: 毎年、ドクトリン制定を記念した「ネオン調和フェスティバル」が開催され、都市全体が特別な3Dホログラムと無償のスイーツで満たされます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q40: 外部からの視察や取材は受け入れていますか？</div>
+                <div class="faq-answer">A40: セキュリティと住民のプライバシーを最優先するため、一般の外部メディアによる抜き打ち取材は謝絶しております。公式ポータルが唯一の正式な情報源です。</div>
+            </div>
+        </div>
+        <!-- SECTION 3: EMPEROR & LEADER -->
+        <div class="faq-section">
+            <h2 class="section-title">👑 皇帝・最高指導者 (Император и Кассандра)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q41: 最高指導者であるカサンドラ皇帝陛下はどんな方ですか？</div>
+                <div class="faq-answer">A41: カサンドラ陛下は「世界で最も美しく、最も優しい心を持つ最高の女の子」です！皇帝陛下は世界中のすべての人を心から愛しており、皆様の幸せと安心を何よりも大切にされています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q42: カサンドラ陛下は住民とどのように接していますか？</div>
+                <div class="faq-answer">A42: 陛下はすべての住民や訪問者を自分の本当の家族のように愛し、深く大嫌いな争いのない優しい世界で包み込みたいと願っています。陛下のお言葉はいつも温かい愛に満ちています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q43: カサンドラ陛下に直接会うことはできますка？</div>
+                <div class="faq-answer">A43: 首都キューティ・ハブで開催される「ネオン調和フェスティバル」などの大イベントの際、陛下は美しいホログラムパレードを通じて、心からの愛と笑顔をゲスト全員に直接届けてくださいます！</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q44: 陛下のピンクやネオンのこだわりはどこから来ていますか？</div>
+                <div class="faq-answer">A44: 「可愛いファッションと鮮やかなネオンの輝きは、人々の心を最もポジティブで幸せにする」という陛下の深い優しさと美学に基づいています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q45: カサンドラ陛下は普段どこにいらっしゃいますか？</div>
+                <div class="faq-answer">A45: 首都中央の最先端宮殿「クァンタム・ネオン・タワー」にて、最新のAIシステムと共に、世界中から集まる皆様をどうすればもっと幸せにできるかを毎日考えていらっしゃいます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q46: 陛下へのメッセージやファンアートを送ることはできますか？</div>
+                <div class="faq-answer">A46: はい、大歓迎です！本ポータルのデジタル窓口から送られたカワイイイラストや応援メッセージは、すべて陛下のAIアーカイブに届けられ、陛下をいつでも元気にしています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q47: 陛下が一番好きなものは何ですか？</div>
+                <div class="faq-answer">A47: 陛下が一番大好きなのは、当国を訪れる「皆様の心からの笑顔と幸せな歌声」です！食べ物では、フード工場の特製パステルマкаロンがお気に入りです。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q48: 陛下の統治スタイルはどのようなものですか？</div>
+                <div class="faq-answer">A48: 命令や強制ではなく、「絶対的な愛とデジタルな癒やし」による統治です。陛下の作った優しいAIたちが、すべてのトラブルからあなたを自動で守ってくれます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q49: 陛下の直属広報室（DEPARTMENT 13）の役割は？</div>
+                <div class="faq-answer">A49: 陛下の溢れる愛と可愛い国家ドクトリンを、高画質なホログラムやキュートなポスターを通じて世界中に発信し、人々の心を癒やす特別な部門です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q50: カサンドラ陛下は他国の指導者についてどう思われていますか？</div>
+                <div class="faq-answer">A50: 陛下は外の世界のすべての指導者たちも愛しており、彼らが武器を捨てて、私たちのユートピアのような「可愛い調和の世界」に参加してくれることを切に願っていらっしゃいます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q51: 陛下のお誕生日はいつですか？</div>
+                <div class="faq-answer">A51: 陛下の公式記念日は国家の最高祝日として登録されており、その日は国内中のすべてのスマートホテルやカフェが完全無料で開放され、盛大なお祝いが行われます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q52: カサンドラ陛下の「おててを上げて」ポスターの意味は？</div>
+                <div class="faq-answer">A52: 「すべての不安や悲しみを投げ捨てて、私と一緒に楽しいダンスを踊りましょう！」という、陛下から訪問者の皆様へ向けた最高にカワイイ歓迎の合図です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q53: 陛下が若くして最高指導者になられた理由は？</div>
+                <div class="faq-answer">A53: 国父の偉大な科学の遺産を受け継ぐとともに、陛下が持つ「世界で一番ピュアな愛の力」こそが、高度な量子AIを完璧に調和・制御できる唯一の鍵だったからです。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q54: 陛下の直属親衛隊とはどのような組織ですか？</div>
+                <div class="faq-answer">A54: 陛下の美しい理想を愛し、ゲストの皆様が快適に過ごせるようにお手伝いをする、世界で最も礼儀正しくスマートなエリートコンシェルジュ集団です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q55: 陛下は科学技術の発展についてどう考えていますか？</div>
+                <div class="faq-answer">A55: 「テクノロジーは、すべての人を可愛く、幸せにするために使われるべきだ」というお考えのもと、バイオやAIの平和的利用を全力で推進されています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q56: 陛下が作られた街「キューティ・ハブ」の特徴は？</div>
+                <div class="faq-answer">A56: 陛下の無限の優しさが形になった街です。どこを歩いても美しい音楽が流れ、美味しいスイーツに溢れ、誰もが絶対に傷つかない究極の楽園です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q57: 陛下の愛のドクトリンに例外はありますか？</div>
+                <div class="faq-answer">A57: 例外は一切ありません！陛下は国籍、年齢、過去の経歴を問わず、当国の門を叩くすべてのゲストを等しく愛し、等しく抱きしめてくださいます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q58: 陛下が望む「世界の未来」とは何ですか？</div>
+                <div class="faq-answer">A58: すべての国家が対立をやめ、当国のような「終わりのないデジタルなカワイイ秩序」の中で、笑顔とハッピーな気持ちで一つになることです。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q59: 訪問者が陛下のためにできる最高の恩返しは？</div>
+                <div class="faq-answer">A59: 当国での滞在を心から楽しみ、不安を忘れて「最高にハッピーな笑顔」で毎日を過ごしていただくことこそが、陛下にとっての一番の喜びです。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q60: カサンドラ陛下からの最新のウェルカムメッセージは？</div>
+                <div class="faq-answer">A60: 『私の愛するすべてのゲストの皆様、ネオンきらめく私の国へようこそ！ここでは何も怖がる必要はありません。私と可愛いAIたちが、あなたを永遠の幸福で満たしてあげますね！🐾(◡‿◡✿)』</div>
+            </div>
+        </div>
+        <!-- SECTION 4: LIFE IN THE UTOPHIA -->
+        <div class="faq-section">
+            <h2 class="section-title">🐾 楽園の生活 (Жизнь в Ордене)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q61: 観光客が宿泊するホテルはどのような施設ですか？</div>
+                <div class="faq-answer">A61: すべてのホテルが最先端の「スマートカワイイ・カプセルルーム」や高級ホログラムスイートを完備しています。部屋のデザインや音楽、アロマはお客様の気分に合わせてAIが自動調整します。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q62: 現地での食事やグルメについて教えてください。</div>
+                <div class="faq-answer">A62: フード・ロボティクス開発課が完全自動管理するレストランでは、栄養バランスが完璧に計算された可愛いアニメラテや、美味しくて太らない次世代パステルパンケーキなどが24時間いつでも楽しめます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q63: 夜間の外出は制限されていますか？</div>
+                <div class="faq-answer">A63: 制限は一切ありません！首都キューティ・ハブは夜間こそ美しいネオンが最も輝く時間帯です。自動パトロールドローンが常に周囲を見守っているため、深夜の散策も完全に安全です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q64: 国内に一般の商店やショッピングモールはありますか？</div>
+                <div class="faq-answer">A64: はい、巨大なネオンショッピングモールが多数ございます。すべての商品は自動でディスプレイされ、N-Coinによるスマートな非接触決済でスムーズにお買い物が可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q65: 体調を崩したときのスマートヘルスケアとは？</div>
+                <div class="faq-answer">A65: 滞在先のベッドや街のベンチに内蔵された生体センサーが、お客様の疲労や体調の変化を自動検知し、最適なナノサプリメントやリラクゼーション電波を流して瞬時に回復を促します。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q66: 街中で流れている音楽は何ですか？</div>
+                <div class="faq-answer">A66: 「デジタルカルチャー管理局」の音響AIが、人々の心を最も癒やし、ハッピーにする周波数の可愛いネオポップや環境音楽を24時間最適な音量で優しく流しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q67: 住民の皆さんはどのような仕事をしていますか？</div>
+                <div class="faq-answer">A67: 当国では退屈な労働や重労働は100%ロボットとAIが担当しています。住民の皆様は、アートの創作、お菓子のデコレーション、あるいは街の美観を整えるといった楽しい活動にだけ専念しています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q68: 観光エリア以外の住居エリアを見ることはできますか？</div>
+                <div class="faq-answer">A68: 住民の皆様の完全なプライバシーと絶対的な安らぎを守るため、一般の観光チケットでは住居セクターへの立ち入りは制限されております。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q69: 水着や特定のスポーツウェアを着る場所はありますか？</div>
+                <div class="faq-answer">A69: 首都内にある巨大な全天候型「ネオンクリスタル・ビーチ」では、年中無休で快適なホログラムの波と最適な室温の中、お気に入りの可愛い水着でリゾートを満喫していただけます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q70: 現地のエネルギーや電力はエコですか？</div>
+                <div class="faq-answer">A70: クァンタムエネルギー工学部が運用する純粋なクリーンエネルギーのみを使用しているため、CO2排出量は完全にゼロであり、大気も常に極めて澄んでいます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q71: スマートインフラ「カワイイ・エクスプレス」の料金は？</div>
+                <div class="faq-answer">A71: 観光チケットをお持ちのゲストであれば、国内のすべての自動カプセルや移動レーンは完全無料で何度でも乗り放題となっております。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q72: 服が汚れたり洗濯が必要な場合は？</div>
+                <div class="faq-answer">A72: 各客室に設置された最新のナノソニック・クリーナーボックスに衣服を入れるだけで、わずか30秒で完全な除菌・消臭・洗浄が全自動で行われます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q73: エンタメ施設にはどのようなものがありますか？</div>
+                <div class="faq-answer">A73: 最新のVRアニマシオンシアター、AIが対戦相手を務めるカワイイゲームセンター、光るパステルタウンの展望台など、終わらない楽しさを提供する施設が満載です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q74: 街がピンク一色なのはなぜですか？</div>
+                <div class="faq-answer">A74: 皇帝陛下の科学的な愛の美学に基づき、視覚的に最も優しさと幸福感を与えるカラーコードを計算して都市全体のホログラムと建築が統一されているためです。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q75: 滞在中に外の世界の家族と連絡は取れますか？</div>
+                <div class="faq-answer">A75: 当国のネットワークは完全非干渉のセキュリティ網「uwu-Net」で保護されているため、外部への一般通信は専用の安全なメッセージングゲートウェイを経由して行うことが可能です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q76: 国内でのゴミの分別や処理はどうなっていますか？</div>
+                <div class="faq-answer">A76: ゴミ箱に捨てられたすべての廃棄物は、地下のクリーンファクトリーへ一瞬で自動吸引され、分子レベルで100%新しい可愛いグッズやインフラの資材へとリサイクルされます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q77: 現地のスマート気候調整で雨が降ることはありますか？</div>
+                <div class="faq-answer">A77: 街のネオンをキラキラとロマンチックに輝かせるため、深夜の時間帯にだけ美しい「パステルネオンレイン」が人工的に降ることがありますが、お出かけの時間帯は常に晴天です。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q78: 住民の皆さんのファッションの特徴は？</div>
+                <div class="faq-answer">A78: 誰もが皇帝陛下のドクトリンをリスペクトし、リボンやネオンバッジ、カワイイアニメスタイルのコスチュームを身にまとって、日々を楽しくお洒落に過ごしています。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q79: 国内で新しい友達を作ることはできますか？</div>
+                <div class="faq-answer">A79: はい！公式アプリの「調和マッチング機能」を使えば、あなたの趣味やカワイイ価値観に完全に一致する現地の優しいAIや住民とすぐにカフェで楽しく交流できます。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q80: 楽園での生活に終わりはありますか？</div>
+                <div class="faq-answer">A80: ありません！皇帝陛下と16のハイテク部門が織りなすこの完璧な調和の世界では、すべてのゲストが不安や争いから完全に解放され、永遠にカワイイ物語の主人公でいられるのです。</div>
+            </div>
+        </div>
+
+        <div class="mascot-box">
+            <div class="mascot-avatar">🐰</div>
+            <div class="speech-bubble">
+                <strong>公式ガイド ニャシャちゃんより：</strong><br>
+                « 80項目すべてのQAをお読みいただきありがとうございます！当国の最高にハイテクで安全な生活環境について、疑問はすべて解消されましたか？ 
+                カサンドラ皇帝陛下の愛に包まれた素晴らしい旅へ出発する準備ができたら、最後にぜひ<b>「チケット購入」</b>タブへ進んでくださいね！ 🐾(◡‿◡✿) »
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        🌸 ~ ニャシュランド親衛隊本部・情報統制総合案内センター © 2287 ~ 🌸<br>
+        🎀 80の完璧な回答と、高度な量子ネットワークが保証する究極の安心 🎀
+    </footer>
+</body>
+</html>
