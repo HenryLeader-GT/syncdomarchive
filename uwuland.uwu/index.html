@@ -5,88 +5,391 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌸 ニャシュランド親衛隊 | 公式ポータル 🌸</title>
     <style>
+        @import url('https://googleapis.com');
+
         :root {
-            --kawaii-pink-bg: #fff0f5;  
-            --kawaii-pink-main: #ffb7c5;
-            --kawaii-pink-dark: #ff8da1; 
-            --kawaii-text: #5c4b51;
+            --primary-pink: #ffb7c5;
+            --pastel-pink: #ffe4e1;
+            --neon-pink: #ff69b4;
+            --soft-purple: #e6e6fa;
+            --mint-green: #e0f7fa;
+            --text-dark: #4a373a;
             --white: #ffffff;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Meiryo", "Comic Sans MS", sans-serif; }
-        body { background-color: var(--kawaii-pink-bg); color: var(--kawaii-text); line-height: 1.6; }
-        .browser-bar { background: var(--white); padding: 12px 20px; display: flex; align-items: center; border-bottom: 4px dashed var(--kawaii-pink-main); gap: 15px; }
-        .browser-dots { display: flex; gap: 8px; }
-        .dot { width: 14px; height: 14px; border-radius: 50%; }
-        .dot.red { background: #ff7675; }
-        .dot.yellow { background: #ffeaa7; }
-        .dot.green { background: #55efc4; }
-        .address-input { background: #fdf6f7; border: 2px solid var(--kawaii-pink-main); border-radius: 20px; padding: 6px 20px; color: var(--kawaii-pink-dark); font-size: 13px; flex-grow: 1; text-align: center; font-weight: bold; }
-        .header-kawaii { background: var(--white); padding: 25px; border-bottom: 4px dashed var(--kawaii-pink-main); text-align: center; }
-        .header-emblem { font-size: 3.5rem; display: inline-block; animation: heartBeat 2s infinite; margin-bottom: 5px; }
-        .header-text h1 { font-size: 1.8rem; color: var(--kawaii-pink-dark); text-shadow: 2px 2px 0px rgba(255, 141, 161, 0.2); }
-        .header-text p { font-size: 0.9rem; color: #8e7c84; font-style: italic; }
-        .nav-kawaii { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-        .nav-list { display: flex; list-style: none; gap: 15px; justify-content: center; }
-        .nav-list li { flex: 1; max-width: 200px; }
-        .nav-list a { display: block; padding: 12px; background: var(--white); color: var(--kawaii-pink-dark); text-decoration: none; font-weight: bold; font-size: 0.9rem; text-align: center; border: 3px solid var(--kawaii-pink-main); border-radius: 25px; box-shadow: 0 4px 0px var(--kawaii-pink-main); transition: all 0.2s; }
-        .nav-list a:hover { transform: translateY(2px); box-shadow: 0 2px 0px var(--kawaii-pink-main); }
-        .nav-list a.active { background: var(--kawaii-pink-main); color: white; transform: translateY(4px); box-shadow: none; }
-        .main-container { max-width: 1000px; margin: 10px auto 30px auto; padding: 0 20px; display: grid; grid-template-columns: 3fr 1fr; gap: 25px; }
-        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
-        .content-panel { background: var(--white); padding: 30px; border: 4px solid var(--kawaii-pink-main); border-radius: 30px; box-shadow: 0 8px 0px rgba(255, 183, 197, 0.3); }
-        .pink-notice { background: #fff5f7; border: 3px dashed var(--kawaii-pink-dark); padding: 15px; margin-bottom: 25px; border-radius: 20px; font-size: 0.9rem; text-align: center; }
-        .section-title { font-size: 1.4rem; color: var(--kawaii-pink-dark); border-bottom: 3px dotted var(--kawaii-pink-main); padding-bottom: 8px; margin-bottom: 20px; }
-        .sidebar-layout { display: flex; flex-direction: column; gap: 20px; }
-        .mascot-card { background: var(--white); border: 4px solid var(--kawaii-pink-main); padding: 20px; border-radius: 25px; text-align: center; }
-        .mascot-avatar { font-size: 4.5rem; }
-        .mascot-bubble { background: #fff0f2; border: 2px solid var(--kawaii-pink-main); padding: 12px; border-radius: 18px; font-size: 0.85rem; text-align: left; }
-        .site-footer { background: var(--white); color: var(--kawaii-pink-dark); text-align: center; padding: 25px; margin-top: 50px; font-size: 0.8rem; font-weight: bold; border-top: 4px dashed var(--kawaii-pink-main); }
-        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Zen Maru Gothic', 'Mochi Plus One', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--soft-purple) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle, var(--white) 10%, transparent 10%),
+                radial-gradient(circle, var(--primary-pink) 10%, transparent 10%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.15;
+            animation: backgroundScroll 15s linear infinite;
+        }
+
+        @keyframes backgroundScroll {
+            0% { background-position: 0 0, 40px 40px; }
+            100% { background-position: 500px 500px, 540px 540px; }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 15px 40px;
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px dashed var(--primary-pink);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--neon-pink);
+            text-shadow: 2px 2px var(--pastel-pink);
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid var(--primary-pink);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 0 var(--primary-pink);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--neon-pink);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #cc5190;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero-banner {
+            background: rgba(255, 255, 255, 0.85);
+            border: 5px solid var(--primary-pink);
+            border-radius: 40px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.35);
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            color: var(--neon-pink);
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 0px var(--white), 4px 4px 0px var(--pastel-pink);
+        }
+
+        .hero-badge {
+            background: var(--neon-pink);
+            color: var(--white);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+        .about-section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .about-card {
+            background: var(--white);
+            border: 3px solid var(--soft-purple);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        .about-card h2 {
+            color: var(--neon-pink);
+            font-size: 1.8rem;
+            margin-top: 0;
+            border-bottom: 3px dashed var(--pastel-pink);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-card p {
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1rem;
+            border-bottom: 1px dashed rgba(0,0,0,0.05);
+        }
+
+        .features-list li::before {
+            content: "🐾";
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .stats-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid var(--primary-pink);
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.03);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--neon-pink);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #8b6c70;
+            font-weight: 700;
+        }
+        .mascot-box {
+            background: rgba(255, 240, 245, 0.9);
+            border-radius: 30px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border: 3px solid var(--primary-pink);
+            box-shadow: 0 10px 20px rgba(255,183,197,0.2);
+        }
+
+        .mascot-avatar {
+            font-size: 60px;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: bounceMascot 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounceMascot {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            flex-grow: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .speech-bubble::before {
+            content: "";
+            position: absolute;
+            left: -15px;
+            top: 35px;
+            border-width: 10px 15px 10px 0;
+            border-style: solid;
+            border-color: transparent var(--white) transparent transparent;
+        }
+
+        .heart-particle {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            animation: flyHeart 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes flyHeart {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(1.4); opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: #a68a8e;
+            border-top: 4px dashed var(--primary-pink);
+            background: rgba(255, 255, 255, 0.7);
+            margin-top: 60px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
-    <div class="browser-bar">
-        <div class="browser-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-        <div class="address-input">https://uwuland.uwu</div>
-    </div>
-    <header class="header-kawaii">
-        <div class="header-emblem">⚔️🌸⚔️</div>
-        <div class="header-text">
-            <h1>ニャシュランド親衛隊最高司令部</h1>
-            <p>~ 女皇カサンドラ・ユイツ公認情報本部 ~</p>
-        </div>
+
+    <div class="sparkles"></div>
+
+    <header>
+        <div class="logo" onclick="createHeart(event)">🌸 オーデン・ニャシュランディア 🐾</div>
+        <nav>
+            <button class="nav-btn active" onclick="alert('🌸 Вы уже на Главной странице!')">🏠 Главная</button>
+            <button class="nav-btn" onclick="alert('🐾 Перенаправление на безопасную вкладку «Виза»...')">📋 Виза</button>
+            <button class="nav-btn" onclick="alert('🍡 Открытие реестра научных Департаментов...')">🧬 Департаменты</button>
+            <button class="nav-btn" onclick="alert('🔮 Загрузка базы данных FAQ (40 ответов)...')">❓ FAQ</button>
+            <button class="nav-btn" onclick="alert('🎫 Оформление праздничных билетов на посещение страны...')">🎟️ Оформить билет</button>
+        </nav>
     </header>
-    <nav class="nav-kawaii">
-        <ul class="nav-list">
-            <li><a href="index.html" class="active">ホーム 💕</a></li>
-            <li><a href="visa.html">査証案内 🐾</a></li>
-            <li><a href="departments.html">親衛隊組織 🍡</a></li>
-        </ul>
-    </nav>
-    <div class="main-container">
-        <main class="content-panel">
-            <div class="pink-notice">
-                <h2>親衛隊広報ブリーフィング</h2>
-                <p>すべての防衛およびデジタルシステムは、「国父」の保護されたアナログ通信回路で正常稼働中 🐾</p>
+
+    <div class="container">
+        <div class="hero-banner" onclick="createHeart(event)">
+            <div class="hero-badge">OFFICIAL PORTAL</div>
+            <h1>🌸 Орден Няшляндия 🌸</h1>
+            <p class="subtitle">Добро пожаловать в самый уютный, технологичный и безопасный уголок нашего мира! 💕</p>
+            <p class="hero-desc">
+                Мы рады приветствовать вас на официальном представительском ресурсе нашей уютной фракции. 
+                Здесь, под мирным неоновым небом, создаются инновационные стандарты завтрашнего дня, 
+                где каждый житель окружен искренней заботой, цифровой гармонией и бесконечной милотой! ✨
+            </p>
+        </div>
+        <div class="about-section">
+            <div class="about-card">
+                <h2>🎀 Что такое Орден Няшляндия?</h2>
+                <p>
+                    <b>Орден Няшляндия</b> — это полностью изолированное, суверенное военно-научное государство, 
+                    расположенное на живописных северо-восточных рубежах Амонии. Наш уникальный проект зародился в 
+                    далёком 2026 году и на протяжении двух столетий развивался в качестве неприступного бастиона 
+                    прогрессивной мысли, порядка и чистоты. 🌺
+                </p>
+                <p>
+                    В основе нашей философии лежит создание абсолютно идеальной, стабильной и бесконфликтной социальной 
+                    экосистемы. Мы полностью отказались от старых разрушительных доктрин внешнего мира, заменив их 
+                    абсолютной дисциплиной, высокими технологиями и цифровым кавайным стилем.
+                </p>
+                <p><b>Наши ключевые ценности и приоритеты для каждого гостя:</b></p>
+                <ul class="features-list">
+                    <li><b>Автономная безопасность:</b> Высокотехнологичные заводы и автоматизированные защитные системы гарантируют абсолютный покой на всей территории.</li>
+                    <li><b>Эстетика Радости:</b> Столица «Кьюти Хабу» поразит вас своими яркими розовыми неоновыми огнями, милыми кафе и невероятной атмосферой праздника.</li>
+                    <li><b>Культурное единство:</b> Все наши внутренние департаменты и подразделения гвардии преданно заботятся о сохранении мира, стабильности и процветания общества.</li>
+                    <li><b>Научный авангард:</b> Мы ведем передовые исследования в области биоинженерии, IT и аналоговых защищенных систем коммуникации ради всеобщего блага!</li>
+                </ul>
             </div>
-            <h2 class="section-title">⭐ 公式建国宣言（マニフェスト）</h2>
-            <div style="background: #fff9fa; border: 3px dashed var(--kawaii-pink-main); padding: 25px; border-radius: 25px; text-align: justify; font-size: 0.95rem;">
-                <p style="margin-bottom: 15px; font-weight: bold; color: var(--kawaii-pink-dark); text-align: center; font-size: 1.1rem;">🌸 カサンドリアへようこそ — 秩序と調和のユートピアへ！ 🌸</p>
-                <p style="margin-bottom: 15px;">ニャシュランド親衛隊（通称：カサンドリア）は、高度なテクノロジーを有する孤立した軍事科学国家です。我が国は、敬愛なる最高指導者カサンドラ・ユイツ女皇陛下による賢明な統治のもと、絶対的な秩序、調和、そして理想的な未来社会の構築を目指して設立されました。</p>
-                <p style="margin-bottom: 15px;">国家のすべての権力および統治機構は、女皇陛下に絶対の忠誠を誓う女性将校（親衛隊）によって完全に掌握・維持されています。ネオンに彩られた美しい首都「キューティ・ハブ」の街並みは、徹底した安全管理により、いかなる外部の脅威も寄せ付けず、市民に永遠の安心と喜びを提供しています。</p>
-                <p style="font-weight: bold; text-align: center; color: var(--kawaii-pink-dark); margin-top: 20px;">✨ 親衛隊は、デジタルな「可愛さ」の保護、平和、そして絶対的な繁栄を保証します！ 🐇🌟</p>
-            </div>
-        </main>
-        <aside class="sidebar-layout">
-            <div class="mascot-card">
-                <div class="mascot-avatar">🐰</div>
-                <div class="mascot-bubble">
-                    <strong>親衛隊マスコット ニャシャちゃん:</strong><br>
-                    «あります！当ポータルへお越しの平和的な訪問者の皆様を歓迎します！規律を守って、素敵な一日をお過ごしください！(｡♥‿♥｡)»
+
+            <div class="stats-sidebar">
+                <div class="stat-box">
+                    <div class="stat-number">2026</div>
+                    <div class="stat-label">🎀 Год Основания Ордена</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">492,000+</div>
+                    <div class="stat-label">🌸 Счастливых Жителей</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">.uwu</div>
+                    <div class="stat-label">💻 Национальный Домен</div>
+                </div>
+                <div class="stat-box" style="background: var(--mint-green); border-color: #b2dfdb;">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">🛡️ Гарантия Безопасности</div>
                 </div>
             </div>
-        </aside>
+        </div>
+
+        <div class="mascot-box">
+            <div class="mascot-avatar">🐰</div>
+            <div class="speech-bubble">
+                <strong>Официальный гид Няша-тян сообщает:</strong><br>
+                « Ня-а! Орден Няшляндия открывает свои двери для всех, кто ищет истинный покой и технологическое совершенство! 
+                Наш сайт полностью безопасен, автономен и защищён аналоговыми цепями связи. Не забудьте заглянуть во вкладку 
+                <b>“Оформить билет”</b>, чтобы запланировать своё незабываемое путешествие в Кьюти Хабу! Растите, радуйтесь и будьте каваии! 🐾(◡‿◡✿) »
+            </div>
+        </div>
     </div>
-    <footer class="site-footer">~ ニャシュランド親衛隊本部・カサンドリア © 2287 ~</footer>
+
+    <footer>
+        🌸 ~ Ниャシュランド親衛隊本部・Орден Няшляндия © 2287 ~ 🌸<br>
+        🎀 Территория абсолютного порядка, цифровой милоты и вечной гармонии 🎀
+    </footer>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            if(e.target.tagName === 'BUTTON') return;
+            createHeart(e);
+        });
+
+        function createHeart(e) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            const symbols = ['🌸', '🎀', '💕', '🐾', '✨'];
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 1000);
+        }
+    </script>
 </body>
 </html>
