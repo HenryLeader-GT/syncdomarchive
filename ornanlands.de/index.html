@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEHRSTAAT ORNANLANDS // OFFIZIELLER NETZKNOTEN</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --panel-bg: #121212;
+            --border-color: #2e2e2e;
+            --text-color: #a0a0a0;
+            --text-critical: #ff3333;
+            --text-accent: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .grid-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 4px double var(--border-color);
+            padding: 15px;
+            background-color: var(--panel-bg);
+        }
+
+        header {
+            border-bottom: 3px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-accent);
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-critical);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .ticker {
+            background-color: #1a0505;
+            border: 1px solid var(--text-critical);
+            color: var(--text-critical);
+            padding: 8px;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+        }
+
+        aside {
+            border-right: 1px solid var(--border-color);
+            padding-right: 20px;
+        }
+
+        .nav-block {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .nav-block h3 {
+            color: var(--text-accent);
+            font-size: 14px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 3px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            font-size: 13px;
+            margin-bottom: 6px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        li::before {
+            content: "[•]";
+            position: absolute;
+            left: -10px;
+            color: var(--border-color);
+            font-size: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-box {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            position: relative;
+        }
+
+        .section-box h2 {
+            color: var(--text-accent);
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .stat-table td {
+            padding: 5px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-table td:first-child {
+            color: var(--text-accent);
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .critical-paragraph {
+            border-left: 3px solid var(--text-critical);
+            padding-left: 10px;
+            color: #d17575;
+            font-style: italic;
+        }
+
+        footer {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid-container">
+    <header>
+        <h1>WEHRSTAAT ORNANLÄNDS</h1>
+        <div class="subtitle">WEHRSTAAT ORNANLÄNDS // SEKTOR OST-FRAKTRAZIER</div>
+    </header>
+
+    <div class="ticker">
+        [WARNUNG] DAS SYSTEM OPERIERT IM MODUS DER MAXIMALEN HYPERZENTRALISIERUNG. JEDE ERSCHÜTTERUNG IST ZU VERMEIDEN.
+    </div>
+
+    <div class="main-layout">
+        <aside>
+            <div class="nav-block">
+                <h3>DIREKTIVEN</h3>
+                <ul>
+                    <li>Hauptdatenbank</li>
+                    <li>Bestandsaufnahme (Hühnerställe)</li>
+                    <li>Überwachung der Raketensilos</li>
+                    <li>Protokolle der Kulmination</li>
+                </ul>
+            </div>
+            
+            <div class="nav-block">
+                <h3>EXTERNE BEDROHUNGEN</h3>
+                <ul>
+                    <li>Weiße Liga (Aktiv)</li>
+                    <li>GSI / Lord Freezer</li>
+                    <li>CAS / Die rosa Pest</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <div class="section-box">
+                <h2>DER LÖSCHIMPULS: ALLGEMEINE ÜBERSICHT</h2>
+                <p>Der Wehrstaat Ornanländs ist eine militarisierte Schattenenklave der totalen Kontrolle. Unsere fundamentale Aufgabe ist die Forcierung des Dritten Weltkriegs und die Einleitung der Dritten Kulmination. Die aktuelle menschliche Zivilisation wird als Sackgasse eingestuft, die in Lügen versunken ist und vollständig aus dem Register der Existenz gelöscht werden muss.</p>
+                
+                <table class="stat-table">
+                    <tr><td>Fraktionscode:</td><td>ORN</td></tr>
+                    <tr><td>Befehlshaber:</td><td>Viktor Ornan („Der Hühnerzüchter“)</td></tr>
+                    <tr><td>Population:</td><td>500 000 Einheiten</td></tr>
+                    <tr><td>Währung:</td><td>Dunkler Euro</td></tr>
+                    <tr><td>Domainzone:</td><td>.wol / .orn</td></tr>
+                </table>
+            </div>
+
+            <div class="section-box">
+                <h2>STRUKTURELLE INSTABILITÄT DES SYSTEMS</h2>
+                <p class="critical-paragraph">ACHTUNG AN DAS TECHNISCHE PERSONAL: Die Konstruktion der Staatsmaschine ist durch interne Verknüpfungen und die Paranoia der Exekutivorgane völlig überlastet. Es wird eine kritische Fragilität des zentralen Apparats beobachtet. Praktisch gilt: Wenn der Oberbefehlshaber Ornan in seinem Büro zufällig niest, kann die Welle von Fehlbefehlen und Logistikabstürzen die gesamte Machtvertikale augenblicklich zum Einsturz bringen.</p>
+            </div>
+
+            <div class="section-box">
+                <h2>OFFIZIELLES HASSDEKRET GEGEN CAS</h2>
+                <p>Der Wehrstaat deklariert die absolute Ablehnung und den Zorn gegenüber dem sogenannten Orden Nyashlandia (Cassandriya). Das feige, neonrosa Regime eines 25-jährigen, psychisch labilen Mädchens, das rosa Schleifen produziert und das Internet über „uwu-Net“ isoliert, stellt den ultimativen Akt der menschlichen Degeneration dar. Die rosa Subkultur ist Sünde und Chaos, welches von unseren Streitkräften als Erstes restlos annihiliert wird.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        STRENG GEHEIM // ORNANLÄNDS NETZWERK © 2287
+    </footer>
+</div>
+
+</body>
+</html>
