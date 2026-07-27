@@ -364,8 +364,8 @@
 
     <div class="container">
         <div class="hero-banner full-width">
-            <h1>🎟️ クァンタム高速カプセルチケット発券中</h1>
-            <p class="subtitle">夢のネオンシティ「キューティ・ハブ」へ！完全自動・瞬時決済スマートフォーム</p>
+            <h1>🎟️ チケットを購入する</h1>
+            <p class="subtitle">こちらでは、私たちの楽園のような国への航空券を自由にご購入いただけます。</p>
         </div>
 
         <div class="booking-card">
@@ -383,22 +383,22 @@
 
             <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.95rem;">🛋️ クラス（シート等級）の選択:</label>
             <div class="class-selector">
-                <div class="class-option selected" id="classStandard" onclick="selectClass('Standard', 250)">
+                <div class="class-option selected" id="classEconome" onclick="selectClass('Econome', 250)">
+                    <div class="class-name">経済</div>
+                    <div class="class-price">250円</div>
+                </div>
+                <div class="class-option" id="classStandart" onclick="selectClass('Standart', 500)">
                     <div class="class-name">スタンダード</div>
-                    <div class="class-price">250 N-Coin</div>
+                    <div class="class-price">500円</div>
                 </div>
-                <div class="class-option" id="classPremium" onclick="selectClass('Premium', 500)">
+                <div class="class-option" id="classPremium" onclick="selectClass('Premium', 1200)">
                     <div class="class-name">プレミアム</div>
-                    <div class="class-price">500 N-Coin</div>
-                </div>
-                <div class="class-option" id="classImperial" onclick="selectClass('Imperial', 1200)">
-                    <div class="class-name">皇帝特等席</div>
-                    <div class="class-price">1200 N-Coin</div>
+                    <div class="class-price">1200円</div>
                 </div>
             </div>
 
             <div class="capsule-map">
-                <div class="capsule-title">🚀 浮上カプセル内座席指定マップ</div>
+                <div class="capsule-title">🚀 クルーの座席配置</div>
                 <div class="seats-grid">
                     <div class="seat" onclick="toggleSeat(this, 'A1')">A1</div>
                     <div class="seat occupied">A2</div>
@@ -415,30 +415,30 @@
             <h2>📊 決済料金計算・お支払い</h2>
             <div class="receipt-line">
                 <span>基本運賃 (シートクラス):</span>
-                <span id="receiptClass">250 N-Coin</span>
+                <span id="receiptClass">円</span>
             </div>
             
             <div style="border-top: 1px dashed var(--primary-pink); margin: 15px 0; padding-top: 15px;">
-                <label style="font-weight:700; font-size:0.9rem; display:block; margin-bottom:10px;">✨ オプションの追加 (Доп. услуги):</label>
+                <label style="font-weight:700; font-size:0.9rem; display:block; margin-bottom:10px;">✨ オプションの追加:</label>
                 <div style="display:flex; flex-direction:column; gap:8px;">
-                    <label><input type="checkbox" id="optFood" onchange="updateTotal()"> 🍱 フード特製スイーツ (+50 N-Coin)</label>
-                    <label><input type="checkbox" id="optShield" onchange="updateTotal()"> 🛡️ クァнタム保険シールド (+100 N-Coin)</label>
-                    <label><input type="checkbox" id="optHolo" onchange="updateTotal()"> 🌆 特別ホログラム観光ガイド (+80 N-Coin)</label>
+                    <label><input type="checkbox" id="optFood" onchange="updateTotal()"> 🍱 フード特製スイーツ (+50円)</label>
+                    <label><input type="checkbox" id="optShield" onchange="updateTotal()"> 🛡️ クァнタム保険シールド (+100円)</label>
+                    <label><input type="checkbox" id="optHolo" onchange="updateTotal()"> 🌆 特別ホログラム観光ガイド (+80円)</label>
                 </div>
             </div>
 
             <div class="total-section">
                 <div class="receipt-line" style="font-weight:700;">
-                    <span>合計金額 (Итого):</span>
+                    <span>合計金額:</span>
                     <div class="price-display" id="totalPrice">250 N-Coin</div>
                 </div>
             </div>
 
             <div style="background:var(--white); border:2px solid var(--primary-pink); border-radius:20px; padding:15px; margin-top:20px;">
-                <label style="font-weight:700; font-size:0.9rem; display:block; margin-bottom:8px;">💳 お支払い方法の選択 (Метод оплаты):</label>
+                <label style="font-weight:700; font-size:0.9rem; display:block; margin-bottom:8px;">💳 お支払い方法の選択:</label>
                 <select id="paymentMethod" style="width:100%; padding:10px; border-radius:10px; border:2px solid var(--pastel-pink); font-family:inherit; margin-bottom:10px;">
-                    <option value="card">📊 国際クレジットカード (Credit Card)</option>
-                    <option value="crypto">🪙 クァンタム暗号通貨 (Quantum Crypto)</option>
+                    <option value="card">📊 国際クレジットカード</option>
+                    <option value="crypto">🪙 クァンタム暗号通貨</option>
                     <option value="id">💮 カサンドリア市民IDポイント</option>
                 </select>
                 <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%; padding:10px; border-radius:10px; border:2px solid var(--pastel-pink); box-sizing:border-box; font-family:inherit;">
@@ -452,7 +452,7 @@
                 <h3 style="color:#b71c1c; margin-top:0; font-family:sans-serif !important;">⚠️ SECURITY TRANSACTION ALERT / 決済エラー</h3>
                 <p style="font-size:0.95rem; line-height:1.6; font-family:sans-serif !important; font-weight:bold;">
                     [SECURITY BLOCK] CRITICAL ERROR ER-2287: <br>
-                    当システムへのマイクロトランザクション（微小決済）は、国際安全保障条約および国際連合（ООН / United Nations）の保安ネットワーク管制指令に基づき、強制的に遮断されました。<br><br>
+                    当システムへのマイクロトランザクション（微小決済）は、国際安全保障条約および国際連合（United Nations）の保安ネットワーク管制指令に基づき、強制的に遮断されました。<br><br>
                     TRANSACTION DENIED BY UN SECURITY COUNCIL POLICIES REGARDING ISOLATED TERRITORIES. ALL FUNDS HOLD AND ROUTED TO SECURE NODES.
                 </p>
                 <button onclick="document.getElementById('errorMessageBox').style.display='none'" style="background:#d32f2f; color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer; font-weight:bold; font-family:inherit;">閉じる (Close)</button>
