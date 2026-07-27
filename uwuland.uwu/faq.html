@@ -651,5 +651,30 @@
         🌸 ~ ニャシュランド親衛隊本部・情報統制総合案内センター © 2287 ~ 🌸<br>
         🎀 80の完璧な回答と、高度な量子ネットワークが保証する究極の安心 🎀
     </footer>
+    
+    <script>
+        // Скрипт для плавного открытия и закрытия вкладок аккордеона
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    
+                    // Переключаем активное состояние для нажатого вопроса
+                    item.classList.toggle('active');
+
+                    // Дополнительно: закрывать другие открытые вкладки при открытии новой (раскомментируйте, если нужно)
+                    /*
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    */
+                });
+            });
+        });
+    </script>
 </body>
 </html>
