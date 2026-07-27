@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEHRSTAAT ORNANLANDS // OFFIZIELLER NETZKNOTEN</title>
+    <title>WEHRSTAAT ORNANLÄNDS // MILITÄRISCH-WISSENSCHAFTLICHES ARCHIV</title>
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --panel-bg: #121212;
-            --border-color: #2e2e2e;
-            --text-color: #a0a0a0;
-            --text-critical: #ff3333;
-            --text-accent: #ffffff;
+            --bg-color: #050505;
+            --panel-bg: #0d0d0d;
+            --border-color: #1a1a1a;
+            --border-heavy: #333333;
+            --text-color: #8a8a8a;
+            --text-critical: #aa2222;
+            --text-accent: #dddddd;
+            --text-dim: #555555;
         }
 
         * {
@@ -24,48 +26,51 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Courier New', Courier, monospace;
-            padding: 20px;
-            line-height: 1.5;
+            padding: 30px;
+            line-height: 1.6;
         }
 
         .grid-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            border: 4px double var(--border-color);
-            padding: 15px;
+            border: 4px solid var(--border-heavy);
+            padding: 25px;
             background-color: var(--panel-bg);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
 
         header {
-            border-bottom: 3px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 3px double var(--border-heavy);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
-        h1 {
+        header h1 {
             color: var(--text-accent);
-            font-size: 24px;
-            letter-spacing: 3px;
+            font-size: 28px;
+            letter-spacing: 5px;
             margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
         .subtitle {
-            font-size: 12px;
-            color: var(--text-critical);
+            font-size: 11px;
+            color: var(--text-dim);
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .ticker {
-            background-color: #1a0505;
+            background-color: #0f0202;
             border: 1px solid var(--text-critical);
             color: var(--text-critical);
-            padding: 8px;
+            padding: 10px;
             text-align: center;
-            font-size: 13px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            margin-bottom: 25px;
             font-weight: bold;
+            letter-spacing: 1px;
             animation: blink 2s infinite;
         }
 
@@ -76,27 +81,29 @@
 
         .main-layout {
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
         }
 
         aside {
             border-right: 1px solid var(--border-color);
-            padding-right: 20px;
+            padding-right: 25px;
         }
 
         .nav-block {
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            margin-bottom: 15px;
+            border: 1px solid var(--border-heavy);
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #0a0a0a;
         }
 
         .nav-block h3 {
             color: var(--text-accent);
-            font-size: 14px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-heavy);
+            padding-bottom: 5px;
+            letter-spacing: 1px;
         }
 
         ul {
@@ -104,72 +111,101 @@
         }
 
         li {
-            font-size: 13px;
-            margin-bottom: 6px;
-            padding-left: 10px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            padding-left: 15px;
             position: relative;
+            color: var(--text-color);
         }
 
         li::before {
-            content: "[•]";
+            content: "■";
             position: absolute;
-            left: -10px;
-            color: var(--border-color);
-            font-size: 10px;
+            left: 0;
+            color: var(--text-critical);
+            font-size: 8px;
+            top: 2px;
+        }
+
+        .threat-code {
+            font-weight: bold;
+            color: var(--text-critical);
+            font-family: monospace;
         }
 
         main {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .section-box {
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            position: relative;
+            border: 1px solid var(--border-heavy);
+            padding: 20px;
+            background-color: #090909;
         }
 
         .section-box h2 {
             color: var(--text-accent);
             font-size: 16px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .section-box p {
+            font-size: 13px;
+            text-align: justify;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .section-box p:last-child {
+            margin-bottom: 0;
         }
 
         .stat-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 13px;
+            margin-top: 15px;
+            font-size: 12px;
         }
 
         .stat-table td {
-            padding: 5px;
+            padding: 8px;
             border: 1px solid var(--border-color);
+        }
+
+        .stat-table tr:nth-child(even) {
+            background-color: #0b0b0b;
         }
 
         .stat-table td:first-child {
             color: var(--text-accent);
             font-weight: bold;
-            width: 40%;
+            width: 35%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .critical-paragraph {
-            border-left: 3px solid var(--text-critical);
-            padding-left: 10px;
-            color: #d17575;
+        .manifesto-box {
+            border-left: 3px solid var(--border-heavy);
+            padding-left: 15px;
+            margin: 15px 0;
             font-style: italic;
+            color: #777777;
         }
 
         footer {
-            margin-top: 30px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 10px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-heavy);
+            padding-top: 15px;
             text-align: center;
             font-size: 11px;
-            color: #555;
+            color: var(--text-dim);
+            letter-spacing: 2px;
         }
     </style>
 </head>
@@ -178,63 +214,102 @@
 <div class="grid-container">
     <header>
         <h1>WEHRSTAAT ORNANLÄNDS</h1>
-        <div class="subtitle">WEHRSTAAT ORNANLÄNDS // SEKTOR OST-FRAKTRAZIER</div>
+        <div class="subtitle">DOKUMENTATIONSEBENE VII // DOCHTRINÄRE HISTORIE UND GEOPOLITISCHE ANALYSE</div>
     </header>
 
     <div class="ticker">
-        [WARNUNG] DAS SYSTEM OPERIERT IM MODUS DER MAXIMALEN HYPERZENTRALISIERUNG. JEDE ERSCHÜTTERUNG IST ZU VERMEIDEN.
+        [SYSTEMSTATUS] GESTRATTETE STRUKTUREN CONTROLLED // ABSOLUTE DISZIPLIN ERFORDERT // SÄUBERUNG LÄUFT
     </div>
 
     <div class="main-layout">
         <aside>
             <div class="nav-block">
-                <h3>DIREKTIVEN</h3>
-                <ul>
-                    <li>Hauptdatenbank</li>
-                    <li>Bestandsaufnahme (Hühnerställe)</li>
-                    <li>Überwachung der Raketensilos</li>
-                    <li>Protokolle der Kulmination</li>
-                </ul>
+                <h3>STRUKTURELLE PARAMETER</h3>
+                <table class="stat-table" style="margin-top:0;">
+                    <tr><td>CODE:</td><td>ORN</td></tr>
+                    <tr><td>DIKTATOR:</td><td>V. Ornan</td></tr>
+                    <tr><td>POPULATION:</td><td>500.000</td></tr>
+                    <tr><td>WÄHRUNG:</td><td>Dunkler Euro</td></tr>
+                    <tr><td>SYSTEM:</td><td>Unitarisch</td></tr>
+                </table>
             </div>
             
             <div class="nav-block">
-                <h3>EXTERNE BEDROHUNGEN</h3>
+                <h3>KATEGORISIERTE BEDROHUNGEN</h3>
                 <ul>
-                    <li>Weiße Liga (Aktiv)</li>
-                    <li>GSI / Lord Freezer</li>
-                    <li>CAS / Die rosa Pest</li>
+                    <li><span class="threat-code">GSE_$:</span> Groß-Troyanisches Schaffle-Reich (Lord Freezer)</li>
+                    <li><span class="threat-code">NOV_!:</span> Sibirische Weiße Liga</li>
+                    <li><span class="threat-code">CAS:</span> Orden Nyashlandia</li>
+                    <li><span class="threat-code">AMO_n:</span> Gottheiten von Amonien</li>
+                </ul>
+            </div>
+
+            <div class="nav-block">
+                <h3>INTERNE SEKTOREN</h3>
+                <ul>
+                    <li>Zentral-Silo Alpha</li>
+                    <li>Geflügelzucht-Komplex</li>
+                    <li>Forschungslabor West</li>
+                    <li>Kulminations-Bunker</li>
                 </ul>
             </div>
         </aside>
-
+        <!-- НАЧАЛО ОСНОВНОГО МАССИВА ДОКУМЕНТАЦИИ -->
         <main>
+            <!-- Раздел 1: Генезис Верштаата (Экстремальное расширение) -->
             <div class="section-box">
-                <h2>DER LÖSCHIMPULS: ALLGEMEINE ÜBERSICHT</h2>
-                <p>Der Wehrstaat Ornanländs ist eine militarisierte Schattenenklave der totalen Kontrolle. Unsere fundamentale Aufgabe ist die Forcierung des Dritten Weltkriegs und die Einleitung der Dritten Kulmination. Die aktuelle menschliche Zivilisation wird als Sackgasse eingestuft, die in Lügen versunken ist und vollständig aus dem Register der Existenz gelöscht werden muss.</p>
+                <h2>1. DIE ULTRA-CHRONIK DES SCHATTENSTAATES: ENTSTEHUNG UND ISOLATION</h2>
+                <p>Die historische Entstehung des Wehrstaates Ornanländs ist das direkte Resultat einer totalen, unumkehrbaren Implosion des kontinentalen politischen Gefüges innerhalb des Schaffle-Universums. Als die geopolitischen Strukturen der alten Welt unter dem Druck endloser Ressourcenkriege kollabierten, formierte sich im Sektor Ost-Fraktrazien (geografisch den historischen Grenzlanden des östlichen Frankreichs entsprechend) eine geheime technokratische Fraktion. Diese Gruppierung, bestehend aus radikalen Militäringenieuren, Logistik-Kybernetikern und ideologischen Dissidenten, weigerte sich, am kollektiven Selbstmord der äußeren Nationen teilzunehmen. Unter der absoluten, unanfechtbaren Führung von Viktor Ornan inszenierte diese Elite eine totale Abspaltung von der Menschheit.</p>
                 
-                <table class="stat-table">
-                    <tr><td>Fraktionscode:</td><td>ORN</td></tr>
-                    <tr><td>Befehlshaber:</td><td>Viktor Ornan („Der Hühnerzüchter“)</td></tr>
-                    <tr><td>Population:</td><td>500 000 Einheiten</td></tr>
-                    <tr><td>Währung:</td><td>Dunkler Euro</td></tr>
-                    <tr><td>Domainzone:</td><td>.wol / .orn</td></tr>
-                </table>
+                <p>Während die äußeren Großmächte ihre verbliebenen urbanen Zentren in atomaren Feuern verbrannten, verwandelte die Führung von Ornanländs ihr gesamtes Territorium in eine hermetisch abgeriegelte Todesfestung. Jede Spur von ziviler Vorkriegsarchitektur, Kultur oder gesellschaftlicher Freiheit wurde restlos und systematisch demontiert. Die Oberfläche wurde planiert, mit schweren Betonpanzern überzogen und mit automatisierten Verteidigungslinien durchsetzt, während das eigentliche Leben des Staates komplett in die technologische Finsternis kilometertiefer unterirdischer Bunkeranlagen verlegt wurde.</p>
+                
+                <p>Die Transformation der 500.000 registrierten Einheiten folgte den Prinzipien einer extremen biologischen und mechanischen Funktionalität. Im Wehrstaat existiert das Konzept des Individuums nicht mehr; jeder Bürger ist eine katalogisierte Ressource, ein rein mathematisch erfasstes Zahnrad in einer ununterbrochen laufenden Kriegsmaschine. Die interne Wirtschaftsstruktur operiert in einem Zustand permanenten Kriegskommunismus, der durch die Einführung des „Dunklen Euros“ reguliert wird — einer Währung, die ausschließlich über staatliche Zuteilungssysteme für erbrachte Produktionsleistungen vergeben wird. Unabhängig von globalen Handelsströmen hat der Wehrstaat eine absolute Autarkie erreicht: Die unterirdischen Schwerindustrie-Konstrukte und automatisierten Alchemie-Labore synthetisieren alle benötigten Rohstoffe, Treibstoffe und Waffensysteme direkt aus den tektonischen Tiefen der ost-fraktrazischen Erde.</p>
+                
+                <p>Die innere Disziplin wird durch ein lückenloses Netz von Überwachungssensoren und kybernetischen Kontrollinstanzen aufrechterhalten, die direkt an das neuronale Terminal von Viktor Ornan gekoppelt sind. Jede Abweichung von den vorgegebenen industriellen Produktionsquoten, jedes Zeichen von psychischer Erschöpfung oder ideologischem Zweifel wird vom System als struktureller Defekt registriert и führt zur sofortigen Liquidierung oder biologischen Repersonalisierung der betroffenen Einheit. Das System kennt keine Gnade, keine Kompromisse и keine Pausen — es ist ein ewiger, maschineller Marsch auf das Ende der Zivilisation zu.</p>
             </div>
 
+            <!-- Раздел 2: Радикальная идеология (Экстремальное расширение) -->
             <div class="section-box">
-                <h2>STRUKTURELLE INSTABILITÄT DES SYSTEMS</h2>
-                <p class="critical-paragraph">ACHTUNG AN DAS TECHNISCHE PERSONAL: Die Konstruktion der Staatsmaschine ist durch interne Verknüpfungen und die Paranoia der Exekutivorgane völlig überlastet. Es wird eine kritische Fragilität des zentralen Apparats beobachtet. Praktisch gilt: Wenn der Oberbefehlshaber Ornan in seinem Büro zufällig niest, kann die Welle von Fehlbefehlen und Logistikabstürzen die gesamte Machtvertikale augenblicklich zum Einsturz bringen.</p>
+                <h2>2. DIE METAPHYSISCHE DOCHTRIN DER TOTALEN REINIGUNG (DAS MANIFEST)</h2>
+                <p>Die offizielle Staatsideologie von Ornanländs sprengt die Grenzen aller bekannten historischen Tyranneien des alten Planeten. Es handelt sich um eine esoterisch-technokratische Weiterentwicklung des Nationalsozialismus, die von jeglichen humanitären oder territorialen Ambitionen gereinigt und mit einem absoluten, kompromisslosen Antihumanismus verschmolzen wurde. Während klassische faschistische Imperien der Vergangenheit nach der Unterwerfung fremder Völker, der Expansion von Lebensraum oder der Errichtung globaler Hegemonialstrukturen strebten, definiert der Wehrstaat sein Existenzrecht durch ein einziges, absolut destruktives Endziel: Die vollständige physische Eliminierung der gesamten Menschheit als biologische Spezies.</p>
+                
+                <div class="manifesto-box">
+                    „Die menschliche Spezies ist kein Endprodukt der evolutionären Entwicklung, sondern ein biologischer Konstruktionsfehler, eine infizierte Anomalie im Gefüge des Universums. Die Geschichte des Menschen ist eine endlose Schleife aus Lüge, Verrat, moralischer Verwesung und irrationaler Zerstörung. Eine Heilung durch Reformen, Umerziehung oder politische Verträge ist wissenschaftlich unmöglich. Die einzige logische, valide und moralisch reine Lösung ist die restlose Löschung des gesamten menschlichen Registers aus der Existenz. Erst wenn das Fleisch des Menschen zu Asche verbrannt ist, wird das Universum seine mathematische Harmonie zurückerhalten.“<br>
+                    — Auszug aus dem Schwarzen Kodex, verfasst von Viktor Ornan
+                </div>
+                
+                <p>Um diese monumentale Säuberung zu vollstrecken, verfolgt der Wehrstaat die strategische Doktrin der permanenten globalen Provokation. Die militärische Führung in den Tiefbunkern von Wehrstaat-Hauptstaat hat erkannt, dass eine konventionelle Kriegsführung gegen die globalen Supermächte des Schaffle-Universums ineffizient wäre. Stattdessen agiert das System als unsichtbarer Katalysator des Untergangs: Durch verdeckte Cyber-Operationen, die gezielte Kontamination kontinentaler Wasservorkommen und die Inszenierung falscher militärischer Angriffe unter falscher Flagge wird versucht, die verbliebenen Großmächte in einen unumkehrbaren, totalen nuklearen Konflikt zu stürzen. Dieses finale Ereignis, im internen Protokoll als die „Dritte Kulmination“ codiert, soll eine unkontrollierbare Kettenreaktion auslösen, die die Atmosphäre des Planeten dauerhaft vergiftet и jegliches organische Leben vernichtet.</p>
+                
+                <p>In den geheimen Forschungslaboren des Sektors West arbeiten Hunderte von genetisch optimierten Wissenschaftlern unter extremem Druck an der Perfektionierung von Massenvernichtungswaffen. Es werden neuartige Isotopen-Waffen entwickelt, die im Moment des finalen Konflikts nicht nur physische Zerstörung anrichten, sondern die Realitätsstruktur selbst destabilisieren sollen. Das gesamte wissenschaftliche Potenzial des Staates ist auf diesen einen, ultimativen Moment ausgerichtet, in dem der Wehrstaat die Menschheit zwingen wird, sich selbst zu vernichten.</p>
+            </div>
+            <!-- Раздел 3: Анализ угроз (Экстремальное расширение) -->
+            <div class="section-box">
+                <h2>3. GLOBALER EXTERN-BEDROHUNGSREPRESENTANT (STRATEGISCHE MATRIX)</h2>
+                <p>Das Überleben des Wehrstaates Ost-Fraktrazien und die erfolgreiche Initiierung der Dritten Kulmination hängen direkt von der permanenten, sekundengenauen Überwachung und algorithmischen Neutralisierung von vier primären globalen Kräften ab. Diese Mächte blockieren das absolute Endziel und werden in den taktischen Rechenzentren von Zentral-Silo Alpha als umschriebene Zielparameter geführt:</p>
+                
+                <p><strong>GSE_$: Groß-Troyanisches Schaffle-Reich (Lord Freezer):</strong> Die troyanische Imperiums-Maschine stellt die größte konventionelle, industrielle und digitale Bedrohung für das Überleben des Wehrstaates dar. Das gigantische interkontinentale Flottennetzwerk von Lord Freezer und seine orbitalen Spionage-Supercomputer versuchen ununterbrochen, die tiefen, getarnten Raketensilos in Ost-Fraktrazien aufzuspüren. Die imperialen Kybernetik-Divisionen führen einen permanenten, unsichtbaren Cyberkrieg gegen unsere Quanten-Abwehr-Firewalls, um die Startcodes der Kulminations-Waffen präventiv zu korrumpieren oder zu sperren. Ein direkter militärischer Zusammenstoß mit GSE_$ wird so lange vermieden, bis der nukleare Erstschlag des Wehrstaates mathematisch zu 100% abgesichert ist.</p>
+                
+                <p><strong>NOV_!: Sibirische Weiße Liga:</strong> Ein hochgradig militarisiertes, gnadenloses und ideologisch unerbittliches Bündnis, которое железной рукой контролирует бескрайние обледеневшие секторы Востока. Дивизии Белой Лиги оперируют с абсолютной доктринальной жестокостью. Они ведут тотальную войну на истощение против любых проявлений национал-социализма во вселенной Шафла. Их штурмовые группы и глубоко законспирированные агенты регулярно совершают самоубийственные рейды на наши пограничные укрепрайоны, пытаясь уничтожить инфраструктуру Верштаата изнутри. Сибиряки не берут пленных и рассматривают Орнанляндс как опухоль, подлежащую полному физическому выжиганию.</p>
+                
+                <p><strong>CAS: Orden Nyashlandia (Die rosa Pest / Cassandriya):</strong> Das absolute metaphysische и идеологическое противостояние, вызывающее у руководства Верштаата максимальную ярость. Этот тоталитарный ультрафеминистский режим, возглавляемый психически дестабилизированной 25-летней императрицей Кассандрой Юици, превратил Амонию в чудовищный неоновый кошмар. С точки зрения Виктора Орнана, существование Кассандрии с её розовыми бантами, культом «кавайности», принудительной химической кастрацией мужчин и изоляцией информационного пространства через сеть «uwu-Net» является высшей точкой деградации человеческого рода. Орден Няшляндия — это грех, хаос и ментальная зараза. Диверсионные группы CAS регулярно пытаются подорвать стабильность Верштаата. Уничтожение розового анклава в огне ядерного удара задекларировано как приоритетная задача №1 в секунду начала глобального конфликта.</p>
+                
+                <p><strong>AMO_n: Gottheiten von Amonien:</strong> Высшие метафизические, трансцендентальные сущности, находящиеся за пределами понимания классической военной науки. Эти древние божественные сущности способны напрямую вмешиваться в ткань реальности вселенной Шафла, мгновенно изменяя физические законы, искривляя пространство и аннигилируя целые армии одним лишь проявлением своей воли. Их действия абсолютно иррациональны и не поддаются прогнозированию. Наличие фактора AMO_n в глобальном уравнении является главной проблемой для аналитиков Верштаата, так как их присутствие постоянно сбивает математические расчеты, необходимые для гарантированного запуска Третьей Кульминации.</p>
             </div>
 
+            <!-- Раздел 4: Птицеводство как государственная модель (Экстремальное расширение) -->
             <div class="section-box">
-                <h2>OFFIZIELLES HASSDEKRET GEGEN CAS</h2>
-                <p>Der Wehrstaat deklariert die absolute Ablehnung und den Zorn gegenüber dem sogenannten Orden Nyashlandia (Cassandriya). Das feige, neonrosa Regime eines 25-jährigen, psychisch labilen Mädchens, das rosa Schleifen produziert und das Internet über „uwu-Net“ isoliert, stellt den ultimativen Akt der menschlichen Degeneration dar. Die rosa Subkultur ist Sünde und Chaos, welches von unseren Streitkräften als Erstes restlos annihiliert wird.</p>
+                <h2>4. DER BIOLOGISCHE GEFLÜGEL-KOMPLEX: MODELLIERUNG DER REINIGUNG</h2>
+                <p>Один из самых зловещих, глубоких и тщательно охраняемых секторов внутренней структуры Верштаата — это гигантский, полностью автоматизированный Geflügelzucht-Komplex (Птицеводческий комплекс), которым лично и бессменно управляет диктатор Виктор Орнан. В поверхностных слоях внешнего комьюнити Шафла эту деталь лора часто превращают в комичный мем, называя Орнана простым «куроводом». Однако реальность, скрытая в подземных ярусах Верштаат-Хоупштаат, носит исключительно мрачный, сакрально-математический характер.</p>
+                
+                <p>Для Виктора Орнана тотальный контроль над биологическими циклами миллионов птиц в закрытых инкубаторах — это не хобби и не источник продовольствия. Это масштабная научная модель, уменьшенная копия человеческого общества, живой полигон для тестирования механизмов абсолютного подчинения и последующего тотального уничтожения. Внутри гигантских курятников, где свет, подача питательного субстрата и уровень кислорода регулируются главным компьютером, птицы лишены малейших зачатков независимого поведения. Они существуют в условиях идеальной, доведенной до абсурда дисциплины.</p>
+                
+                <p>Орнан использует этот комплекс как биологическую лабораторию для изучения психологии масс, тестирования газов и нано-агентов, подавляющих волю, а также для отработки алгоритмов мгновенной ликвидации популяции в случае системного сбоя. Инфраструктура птицекомплекса синхронизирована с командными пунктами баллистических ракет: курятники управляются с той же жестокой, холодной немецкой точностью, что и пусковые шахты «Царь-бомб». Для «куровода» человечество — это лишь точно такой же огромный, грязный курятник, который заслуживает закрытия и полной очистки.</p>
             </div>
         </main>
     </div>
 
     <footer>
-        STRENG GEHEIM // ORNANLÄNDS NETZWERK © 2287
+        STRENG GEHEIM // СТРОГО СЕКРЕТНО // O-N-NETZWERK REVISION 2287 // ENDE DER DATENÜBERTRAGUNG
     </footer>
 </div>
 
