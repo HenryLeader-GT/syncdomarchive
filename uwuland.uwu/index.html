@@ -377,23 +377,5 @@
         🌸 ~ ニャシュランド親衛隊本部・オーデン・ニャシュランディア © 2287 ~ 🌸<br>
         🎀 絶対的な秩序、デジタルな可愛さ、そして永遠の調和の領域 🎀
     </footer>
-
-    <script>
-        document.addEventListener('click', function(e) {
-            if(e.target.tagName === 'BUTTON') return;
-            createHeart(e);
-        });
-
-        function createHeart(e) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-particle');
-            const symbols = ['🌸', '🎀', '💕', '🐾', '✨'];
-            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            heart.style.left = e.clientX + 'px';
-            heart.style.top = e.clientY + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 1000);
-        }
-    </script>
 </body>
 </html>
